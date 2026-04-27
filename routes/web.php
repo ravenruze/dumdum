@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\SapiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,3 +17,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('depan');
 });
+
+Route::get('/sapi', [SapiController::class, 'index'])->name('sapi.index');
+Route::get('/sapi/create', [SapiController::class, 'create'])->name('create.index');
