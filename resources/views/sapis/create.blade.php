@@ -16,7 +16,7 @@
         </ul>
     @endif
 </div>
-    <form action="{{route('store.index')}}" method="POST" enctype="multipart/form-data">
+    <form action="{{route('sapi.store')}}" method="POST" enctype="multipart/form-data">
     @csrf
     @method('post')
     <div>

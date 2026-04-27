@@ -19,5 +19,6 @@ Route::get('/', function () {
 });
 
 Route::get('/sapi', [SapiController::class, 'index'])->name('sapi.index');
-Route::get('/sapi/create', [SapiController::class, 'create'])->name('create.index');
-Route::post('/sapi', [SapiController::class, 'store'])->name('store.index');
+Route::get('/sapi/create', [SapiController::class, 'create'])->name('sapi.create');
+Route::post('/sapi', [SapiController::class, 'store'])->name('sapi.store');
+Route::get('/sapi/{sapi}/edit', [SapiController::class, 'edit'])->name('sapi.edit');

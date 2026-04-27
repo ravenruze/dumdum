@@ -17,6 +17,7 @@
             <th>Harga</th>
             <th>Status</th>
             <th>Foto</th>
+            <th>Edit</th>
         </tr>
     </thead>
     <tbody>
@@ -34,6 +35,9 @@
                 @else
                     Tidak ada foto
                 @endif
+            </td>
+            <td>
+                <a href="{{route('sapi.edit', ['sapi'])}}">Edit</a>
             </td>
         </tr>
         @endforeach

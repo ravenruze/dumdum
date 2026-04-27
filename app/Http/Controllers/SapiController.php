@@ -41,4 +41,8 @@ class SapiController extends Controller
 
     return redirect()->route('sapi.index');
     }
+
+    public function edit(Sapi $sapi){
+
+    }
 }
