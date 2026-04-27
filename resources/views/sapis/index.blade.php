@@ -7,6 +7,38 @@
 </head>
 <body>
     <h1>Katalog Sapi</h1>
-    <div>index</div>
+    <div>
+        <table class="table">
+    <thead>
+        <tr>
+            <th>Kode Sapi</th>
+            <th>Jenis</th>
+            <th>Bobot (kg)</th>
+            <th>Harga</th>
+            <th>Status</th>
+            <th>Foto</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach($sapis as $sapi)
+        <tr>
+            <td>{{ $sapi->kode_sapi }}</td>
+            <td>{{ $sapi->jenis_sapi }}</td>
+            <td>{{ $sapi->bobot }}</td>
+            <td>Rp{{ number_format($sapi->harga_jual, 0, ',', '.') }}</td>
+            <td>{{ $sapi->status }}</td>
+            <td>
+                {{-- Cek apakah foto ada dan tampilkan --}}
+                @if($sapi->foto_path)
+                    <img src="{{ asset('storage/' . $sapi->foto_path) }}" width="100px" alt="Foto Sapi">
+                @else
+                    Tidak ada foto
+                @endif
+            </td>
+        </tr>
+        @endforeach
+    </tbody>
+</table>
+    </div>
 </body>
 </html>

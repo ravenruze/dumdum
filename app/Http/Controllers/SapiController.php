@@ -8,7 +8,9 @@ use App\Models\Sapi;
 class SapiController extends Controller
 {
     public function index(){
-        return view('sapis.index');
+        $sapis = Sapi::all();
+        return view('sapis.index', ['sapis' => $sapis]);
+        
     }
 
     public function create(){
