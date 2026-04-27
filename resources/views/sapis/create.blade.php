@@ -7,7 +7,18 @@
 </head>
 <body>
     <h1>Tambah Sapi</h1>
-    <form action="/tambah-sapi" method="POST" enctype="multipart/form-data">
+    <div class="alert alert-danger"> //PESAN ERROR SIMPLE
+    @if ($errors->any())
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    @endif
+</div>
+    <form action="{{route('store.index')}}" method="POST" enctype="multipart/form-data">
+    @csrf
+    @method('post')
     <div>
         <label>Kode Sapi:</label>
         <input type="text" name="kode_sapi" required>

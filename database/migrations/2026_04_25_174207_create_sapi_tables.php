@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('sapis_tables', function (Blueprint $table) {
+        Schema::create('sapis', function (Blueprint $table) {
             $table->id(); //disini woi kalau mau nambahin kolom kolom
             $table->string('kode_sapi')->unique(); 
             $table->string('jenis_sapi');

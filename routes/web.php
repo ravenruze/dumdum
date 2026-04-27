@@ -20,3 +20,4 @@ Route::get('/', function () {
 
 Route::get('/sapi', [SapiController::class, 'index'])->name('sapi.index');
 Route::get('/sapi/create', [SapiController::class, 'create'])->name('create.index');
+Route::post('/sapi', [SapiController::class, 'store'])->name('store.index');
