@@ -51,5 +51,22 @@
         <div class="card">Rekap Penjualan</div>
     </div>
 
+   <div style="display: flex; gap: 20px; max-width: 600px; margin: 20px auto 0;">
+    <div class="card" style="flex: 1;">
+        <p style="color: #888; margin: 0;">Sapi Tersedia</p>
+        <p style="font-size: 1.8rem; font-weight: bold; color: green; margin: 8px 0;">{{ $totalTersedia }}</p>
+        <p style="color: #aaa; margin: 0; font-size: 0.9rem;">dari {{ $totalTersedia + $totalTerjual + $totalDipesan }} ekor</p>
+    </div>
+    <div class="card" style="flex: 1;">
+        <p style="color: #888; margin: 0;">Sapi Dipesan</p>
+        <p style="font-size: 1.8rem; font-weight: bold; color: orange; margin: 8px 0;">{{ $totalDipesan }}</p>
+        <p style="color: #aaa; margin: 0; font-size: 0.9rem;">dari {{ $totalTersedia + $totalTerjual + $totalDipesan }} ekor</p>
+    </div>
+    <div class="card" style="flex: 1;">
+        <p style="color: #888; margin: 0;">Sapi Terjual</p>
+        <p style="font-size: 1.8rem; font-weight: bold; color: red; margin: 8px 0;">{{ $totalTerjual }}</p>
+        <p style="color: #aaa; margin: 0; font-size: 0.9rem;">dari {{ $totalTersedia + $totalTerjual + $totalDipesan }} ekor</p>
+    </div>
+</div>
 </body>
 </html>

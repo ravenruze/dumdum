@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SapiController;
+use App\Http\Controllers\DashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,9 +15,7 @@ use App\Http\Controllers\SapiController;
 |
 */
 
-Route::get('/', function () {
-    return view('depan');
-});
+Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
 
 
