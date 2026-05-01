@@ -8,6 +8,17 @@
 <body>
     <h1>Katalog Sapi</h1>
     <div>
+        @if(session()->has('success'))
+            <div>
+                {{session("success")}}
+            </div>
+
+        @endif
+    </div>
+    <div>
+        <div>
+            <a href="{{route('sapi.create')}}">Tambah Sapi</a>
+        </div>
         <table class="table">
     <thead>
         <tr>
@@ -18,6 +29,7 @@
             <th>Status</th>
             <th>Foto</th>
             <th>Edit</th>
+            <th>Hapus</th>
         </tr>
     </thead>
     <tbody>
@@ -37,8 +49,15 @@
                 @endif
             </td>
             <td>
-                <a href="{{route('sapi.edit', ['sapi'])}}">Edit</a>
+                <a href="{{ route('sapi.edit', $sapi->id) }}">Edit</a>
             </td>
+            <td>
+    <form method="post" action="{{route('sapi.destroy', ['sapi' => $sapi])}}">
+        @csrf
+        @method('delete')
+        <input type="submit" value="Hapus" />
+    </form>
+</td>
         </tr>
         @endforeach
     </tbody>

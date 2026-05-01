@@ -24,3 +24,5 @@ Route::get('/sapi', [SapiController::class, 'index'])->name('sapi.index');
 Route::get('/sapi/create', [SapiController::class, 'create'])->name('sapi.create');
 Route::post('/sapi', [SapiController::class, 'store'])->name('sapi.store');
 Route::get('/sapi/{sapi}/edit', [SapiController::class, 'edit'])->name('sapi.edit');
+Route::put('/sapi/{sapi}/update', [SapiController::class, 'update'])->name('sapi.update');
+Route::delete('/sapi/{sapi}/destroy', [SapiController::class, 'destroy'])->name('sapi.destroy');

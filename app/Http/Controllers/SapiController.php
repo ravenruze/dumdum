@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Sapi;
+use Illuminate\Support\Facades\Storage;
 
 class SapiController extends Controller
 {
@@ -43,6 +44,38 @@ class SapiController extends Controller
     }
 
     public function edit(Sapi $sapi){
+        return view('sapis.edit', ['sapi' => $sapi]);
 
+    }
+
+    public function update(Sapi $sapi, Request $request){
+    $validatedData = $request->validate([
+        'kode_sapi'  => 'required',
+        'jenis_sapi' => 'required',
+        'bobot'      => 'required|numeric',
+        'harga_jual' => 'required|numeric',
+        'status'     => 'required',
+        'foto_path'  => 'nullable|image|mimes:jpeg,png,jpg|max:2048', // required -> nullable
+    ]);
+
+    // Handle foto
+    if ($request->hasFile('foto_path')) {
+        // Ada foto baru, hapus yang lama lalu simpan yang baru
+        Storage::delete('public/' . $sapi->foto_path);
+        $validatedData['foto_path'] = $request->file('foto_path')->store('sapi_images', 'public');
+    } else {
+        // Tidak ada foto baru, pakai foto lama
+        unset($validatedData['foto_path']);
+    }
+
+    $sapi->update($validatedData);
+
+    return redirect()->route('sapi.index')->with('success', 'Berhasil meng-update sapi');
+}
+
+    public function destroy(sapi $sapi){
+        $sapi->delete();
+
+        return redirect()->route('sapi.index')->with('success', 'Berhasil meng-hapus sapi');
     }
 }
