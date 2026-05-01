@@ -7,7 +7,7 @@
 </head>
 <body>
     <h1>Tambah Sapi</h1>
-    <div class="alert alert-danger"> //PESAN ERROR SIMPLE
+    <div class="alert alert-danger"> 
     @if ($errors->any())
         <ul>
             @foreach ($errors->all() as $error)
