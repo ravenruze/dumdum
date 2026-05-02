@@ -14,7 +14,7 @@
     <p>Harga     : Rp{{ number_format($sapi->harga_jual, 0, ',', '.') }}</p>
 
     {{-- Form data pembeli --}}
-    <form action="" method="POST">
+    <form action="{{ route('pesanan.store', $sapi->id) }}" method="POST">
         @csrf
         <div>
             <label>Nama Pembeli:</label>
