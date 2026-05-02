@@ -1,0 +1,37 @@
+/* Styling Tabel Utama */
+table {
+  width: 100%;
+  border-collapse: collapse; /* Menggabungkan garis sel */
+  margin: 20px 0;
+  font-size: 18px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15); /* Bayangan halus */
+}
+
+/* Styling Header Tabel */
+table thead tr {
+  background-color: #009879;
+  color: #ffffff;
+  text-align: left;
+}
+
+/* Padding dan Border untuk Sel */
+table th,
+table td {
+  padding: 12px 15px;
+  border: 1px solid #ddd;
+}
+
+/* Zebra Striping (Baris Selang-seling) */
+table tbody tr {
+  border-bottom: 1px solid #dddddd;
+}
+
+table tbody tr:nth-of-type(even) {
+  background-color: #f3f3f3;
+}
+
+/* Warna Hover pada Baris */
+table tbody tr:hover {
+  background-color: #f1f1f1;
+  cursor: pointer;
+}
