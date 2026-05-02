@@ -24,9 +24,10 @@ class SapiController extends Controller
         'jenis_sapi' => 'required',
         'bobot'      => 'required|numeric',
         'harga_jual' => 'required|numeric',
-        'status'     => 'required',
         'foto_path'  => 'required|image|mimes:jpeg,png,jpg|max:2048',
     ]);
+
+    $validatedData['status'] = 'Tersedia';
 
     // PROSES FOTO:
     if ($request->hasFile('foto_path')) {
@@ -54,7 +55,6 @@ class SapiController extends Controller
         'jenis_sapi' => 'required',
         'bobot'      => 'required|numeric',
         'harga_jual' => 'required|numeric',
-        'status'     => 'required',
         'foto_path'  => 'nullable|image|mimes:jpeg,png,jpg|max:2048', // required -> nullable
     ]);
 

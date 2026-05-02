@@ -40,15 +40,6 @@
     </div>
 
     <div>
-        <label>Status:</label>
-        <select name="status">
-            <option value="Tersedia">Tersedia</option>
-            <option value="Booking">Booking</option>
-            <option value="Terjual">Terjual</option>
-        </select>
-    </div>
-
-    <div>
         <label>Foto:</label>
         <input type="file" name="foto_path" accept="image/*">
     </div>
