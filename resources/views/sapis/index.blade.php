@@ -42,7 +42,6 @@
             padding: 10px 18px;
             border-radius: 8px;
             font-weight: bold;
-            transition: 0.2s;
         }
 
         .btn-add:hover {
@@ -99,15 +98,29 @@
             padding: 15px;
         }
 
+        /* STATUS */
         .status {
             display: inline-block;
-            background: #f1c40f;
-            color: #333;
             font-size: 12px;
             padding: 5px 10px;
             border-radius: 20px;
-            margin-bottom: 10px;
             font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .status-tersedia {
+            background: #2ecc71;
+            color: white;
+        }
+
+        .status-booking {
+            background: #f5da55;
+            color: white;
+        }
+
+        .status-terjual {
+            background: #e74c3c;
+            color: white;
         }
 
         .card-title {
@@ -141,15 +154,11 @@
             text-decoration: none;
             font-size: 14px;
             font-weight: bold;
+            display: inline-block;
         }
 
         .btn-edit {
             background: #3498db;
-            color: white;
-        }
-
-        .btn-detail {
-            background: #95a5a6;
             color: white;
         }
 
@@ -158,17 +167,25 @@
             color: white;
         }
 
+        .disabled {
+            pointer-events: none;
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
         form {
             display: inline;
         }
     </style>
 </head>
+
 <body>
 
 <div class="container">
 
     <h1>Katalog Sapi</h1>
 
+    {{-- Flash Message --}}
     @if(session()->has('success'))
         <div class="success-msg">
             {{ session('success') }}
@@ -181,6 +198,7 @@
     </div>
 
     <div class="grid">
+
         @foreach($sapis as $sapi)
             <div class="card">
 
@@ -194,7 +212,15 @@
 
                 <div class="card-body">
 
-                    <span class="status">{{ $sapi->status }}</span>
+                    {{-- STATUS --}}
+                    <span class="status
+                        @if($sapi->status == 'Tersedia') status-tersedia
+                        @elseif($sapi->status == 'Booking') status-booking
+                        @else status-terjual
+                        @endif
+                    ">
+                        {{ $sapi->status }}
+                    </span>
 
                     <div class="card-title">{{ $sapi->kode_sapi }}</div>
 
@@ -205,13 +231,22 @@
                         Rp{{ number_format($sapi->harga_jual, 0, ',', '.') }}
                     </div>
 
+                    {{-- ACTIONS --}}
                     <div class="actions">
-                        <a href="{{ route('sapi.edit', $sapi->id) }}" class="btn btn-edit">Edit</a>
 
-                        <form method="POST" action="{{ route('sapi.destroy', ['sapi' => $sapi]) }}">
+                        <a href="{{ route('sapi.edit', $sapi->id) }}"
+                           class="btn btn-edit
+                           {{ $sapi->status == 'Terjual' ? 'disabled' : '' }}">
+                            Edit
+                        </a>
+
+                        <form method="POST" action="{{ route('sapi.destroy', $sapi->id) }}">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="btn btn-delete"
+
+                            <button type="submit"
+                                class="btn btn-delete
+                                {{ $sapi->status == 'Terjual' ? 'disabled' : '' }}"
                                 onclick="return confirm('Yakin ingin menghapus data ini?')">
                                 Hapus
                             </button>
@@ -222,6 +257,7 @@
                 </div>
             </div>
         @endforeach
+
     </div>
 
 </div>
