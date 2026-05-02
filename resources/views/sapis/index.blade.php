@@ -71,5 +71,8 @@
     </tbody>
 </table>
     </div>
+
+
+    <a href="{{ route('dashboard') }}">← Kembali ke Dashboard</a>
 </body>
 </html>
