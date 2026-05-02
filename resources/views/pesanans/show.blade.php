@@ -26,6 +26,12 @@
     <h3>Status Pesanan</h3>
     <p>{{ $pesanan->status }}</p>
 
+    <form action="{{ route('pesanan.destroy', $pesanan->id) }}" method="POST">
+        @csrf
+        @method('DELETE')
+        <button type="submit">Batalkan Pesanan</button>
+    </form>
+
     <a href="{{ route('pesanan.index') }}">← Kembali ke Daftar Pesanan</a>
 </body>
 </html>

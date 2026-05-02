@@ -37,7 +37,6 @@
             @endforeach
         </tbody>
     </table>
-
     <a href="{{ route('dashboard') }}">← Kembali ke Dashboard</a>
 </body>
 </html>
