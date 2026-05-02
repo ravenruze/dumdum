@@ -29,6 +29,7 @@
             <th>Status</th>
             <th>Foto</th>
             <th>Edit</th>
+            <th>Booking</th>
             <th>Hapus</th>
         </tr>
     </thead>
@@ -51,6 +52,13 @@
             <td>
                 <a href="{{ route('sapi.edit', $sapi->id) }}">Edit</a>
             </td>
+           <td>  
+                @if($sapi->status == 'Tersedia')
+                    <a href="{{ route('pesanan.create', $sapi->id) }}">Booking</a>
+                @else
+                    -
+                @endif
+          </td>
             <td>
     <form method="post" action="{{route('sapi.destroy', ['sapi' => $sapi])}}">
         @csrf

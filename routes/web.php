@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SapiController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\PesananController;
+use App\Models\Sapi;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,3 +27,6 @@ Route::post('/sapi', [SapiController::class, 'store'])->name('sapi.store');
 Route::get('/sapi/{sapi}/edit', [SapiController::class, 'edit'])->name('sapi.edit');
 Route::put('/sapi/{sapi}/update', [SapiController::class, 'update'])->name('sapi.update');
 Route::delete('/sapi/{sapi}/destroy', [SapiController::class, 'destroy'])->name('sapi.destroy');
+
+
+Route::get('/sapi/{sapi}/booking', [PesananController::class, 'create'])->name('pesanan.create');
