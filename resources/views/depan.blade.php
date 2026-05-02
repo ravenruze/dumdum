@@ -43,10 +43,12 @@
     <h1>Sistem Pencatatan Istana Qurban</h1>
 
     <div class="container">
-       <div class="card" onclick="window.location.href='{{ route('sapi.index') }}'">
+        <div class="card" onclick="window.location.href='{{ route('sapi.index') }}'">
         Katalog Sapi
-    </div>
-        <div class="card">Registrasi dan Booking</div>
+        </div>
+        <div class="card" onclick="window.location.href='{{ route('pesanan.index') }}'">
+        Registrasi dan Booking
+        </div>
         <div class="card">Pembayaran dan Keuangan</div>
         <div class="card">Rekap Penjualan</div>
     </div>

@@ -45,4 +45,10 @@ class PesananController extends Controller
 
         return redirect()->route('sapi.index')->with('success', 'Berhasil melakukan booking');
     }
+
+    public function index()
+{
+        $pesanans = Pesanan::with(['pembeli', 'sapi'])->get();
+        return view('pesanans.index', compact('pesanans'));
+    }
 }
