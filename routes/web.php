@@ -32,3 +32,4 @@ Route::delete('/sapi/{sapi}/destroy', [SapiController::class, 'destroy'])->name(
 Route::get('/sapi/{sapi}/booking', [PesananController::class, 'create'])->name('pesanan.create');
 Route::post('/sapi/{sapi}/booking', [PesananController::class, 'store'])->name('pesanan.store');
 Route::get('/pesanan', [PesananController::class, 'index'])->name('pesanan.index');
+Route::get('/pesanan/{pesanan}', [PesananController::class, 'show'])->name('pesanan.show');

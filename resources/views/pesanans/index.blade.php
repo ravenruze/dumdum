@@ -31,7 +31,7 @@
                 <td>Rp{{ number_format($pesanan->sapi->harga_jual, 0, ',', '.') }}</td>
                 <td>{{ $pesanan->status }}</td>
                 <td>
-                    <a href="#">Lihat Detail</a>
+                    <a href="{{ route('pesanan.show', $pesanan->id) }}">Lihat Detail</a>
                 </td>
             </tr>
             @endforeach
