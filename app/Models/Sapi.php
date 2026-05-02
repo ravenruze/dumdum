@@ -17,4 +17,9 @@ class Sapi extends Model
         'status',
         'foto_path'
     ];
+
+    public function pesanan()
+{
+    return $this->hasOne(Pesanan::class); //RELASI Sapi PUNYA satu pesanan
+}
 }
