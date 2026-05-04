@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Katalog Sapi</title>
+    <title>Katalog Sapi - Istana Qurban</title>
 
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
         body {
@@ -18,69 +18,97 @@
             color: #222;
         }
 
+        /* --- NAVBAR --- */
+        .navbar {
+            background-color: #d1e7dd; 
+            padding: 12px 4%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            margin-bottom: 20px;
+        }
+
+        .navbar-brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 1000;
+            color: #1e4d2b;
+            text-transform: uppercase;
+            font-size: 18px;
+        }
+
+        .navbar-brand img {
+            height: 45px;
+            width: auto;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #444;
+            font-weight: 800;
+            font-size: 14px;
+        }
+
+        .nav-links a.active {
+            color: #1e4d2b;
+            border-bottom: 2px solid #1e4d2b;
+            padding-bottom: 5px;
+        }
+
+        /* --- LAYOUT --- */
         .container {
-            width: 92%;
-            margin: 30px auto;
+            width: 95%;
+            margin: 20px auto;
         }
 
         h1 {
-            margin-bottom: 20px;
-            font-size: 34px;
+            margin-bottom: 15px;
+            font-size: 28px;
+            font-weight: 800;    
+            color: #1e4d2b;      
         }
 
         .top-bar {
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 25px;
+            justify-content: flex-end;
+            margin-bottom: 20px;
         }
 
         .btn-add {
             text-decoration: none;
-            background: #2ecc71;
+            background: #4c9b77;
             color: white;
-            padding: 10px 18px;
-            border-radius: 8px;
+            padding: 8px 15px;
+            border-radius: 6px;
             font-weight: bold;
-        }
-
-        .btn-add:hover {
-            background: #27ae60;
-        }
-
-        .success-msg {
-            background: #d4edda;
-            color: #155724;
-            padding: 12px 15px;
-            border-radius: 8px;
-            margin-bottom: 20px;
+            font-size: 14px;
         }
 
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-            gap: 22px;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
         }
 
         .card {
-            background: white;
-            border-radius: 14px;
+            background: #fdfdfd;
+            border: 1px solid #e0e0e0;
             overflow: hidden;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-            transition: 0.2s;
-        }
-
-        .card:hover {
-            transform: translateY(-4px);
+            display: flex;
+            flex-direction: column;
         }
 
         .card-image {
             width: 100%;
-            height: 180px;
+            height: 160px;
             background: #eee;
-            display: flex;
-            align-items: center;
-            justify-content: center;
         }
 
         .card-image img {
@@ -89,88 +117,74 @@
             object-fit: cover;
         }
 
-        .no-image {
-            color: #888;
-            font-size: 14px;
-        }
-
         .card-body {
             padding: 15px;
+            display: flex;
+            flex-direction: column;
         }
 
-        /* STATUS */
-        .status {
-            display: inline-block;
-            font-size: 12px;
-            padding: 5px 10px;
-            border-radius: 20px;
+        .card-header-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .id-text {
+            font-size: 18px;
+            font-weight: 600;
+            color: #000;
+        }
+
+        .status-badge {
+            padding: 4px 10px;
+            font-size: 11px;
             font-weight: bold;
-            margin-bottom: 10px;
-        }
-
-        .status-tersedia {
-            background: #2ecc71;
             color: white;
+            text-transform: uppercase;
         }
 
-        .status-booking {
-            background: #f5da55;
-            color: white;
+        .status-available { background-color: #38b2ac; }
+        .status-booking { background-color: #f6ad55; }
+        .status-sold { background-color: #e53e3e; }
+
+        .card-description {
+            font-size: 16px;
+            font-weight: 500;
+            color: #000;
+            margin-bottom: 15px;
         }
 
-        .status-terjual {
-            background: #e74c3c;
-            color: white;
-        }
-
-        .card-title {
-            font-size: 20px;
-            margin-bottom: 8px;
-        }
-
-        .card-info {
-            margin-bottom: 6px;
-            color: #555;
-        }
-
-        .price {
+        .price-text {
             font-size: 18px;
             font-weight: bold;
-            color: #2c3e50;
-            margin: 10px 0 14px;
+            color: #000;
+            margin-bottom: 12px;
         }
 
+        /* --- ACTIONS (Tombol) --- */
         .actions {
             display: flex;
-            gap: 8px;
-            flex-wrap: wrap;
+            gap: 5px;
+            flex-wrap: wrap; 
         }
 
-        .btn {
-            border: none;
-            padding: 8px 14px;
-            border-radius: 7px;
-            cursor: pointer;
-            text-decoration: none;
-            font-size: 14px;
+        .btn-minimal {
+            background: #e0e0e0;
+            border: 1px solid #ccc;
+            color: #333;
+            padding: 6px 12px;
+            font-size: 11px;
             font-weight: bold;
-            display: inline-block;
+            text-decoration: none;
+            text-transform: uppercase;
+            cursor: pointer;
+            text-align: center;
+            min-width: 60px; 
         }
 
-        .btn-edit {
-            background: #3498db;
-            color: white;
-        }
-
-        .btn-delete {
-            background: #e74c3c;
-            color: white;
-        }
-
-        .disabled {
-            pointer-events: none;
-            opacity: 0.5;
-            cursor: not-allowed;
+        .btn-minimal:hover {
+            background: #d5d5d5;
         }
 
         form {
@@ -178,88 +192,82 @@
         }
     </style>
 </head>
-
 <body>
+
+<nav class="navbar">
+    <div class="navbar-brand">
+        <img src="{{ asset('img/logo-istana-qurban.png') }}" alt="Logo Istana Qurban"> 
+        <span>Istana Qurban</span>
+    </div>
+    <div class="nav-links">
+        <a href="{{ route('dashboard') }}">Dashboard</a>
+        <a href="#" class="active">Katalog Sapi</a>
+        <a href="#">Registrasi & Booking</a>
+        <a href="#">Transaksi</a>
+        <a href="#">Laporan</a>
+    </div>
+    <div class="user-profile">👤</div>
+</nav>
 
 <div class="container">
 
     <h1>Katalog Sapi</h1>
 
-    {{-- Flash Message --}}
-    @if(session()->has('success'))
-        <div class="success-msg">
-            {{ session('success') }}
-        </div>
-    @endif
-
     <div class="top-bar">
-        <div></div>
-        <a href="{{ route('sapi.create') }}" class="btn-add">+ Tambah Sapi</a>
+        <a href="{{ route('sapi.create') }}" class="btn-add">+ TAMBAH SAPI</a>
     </div>
 
     <div class="grid">
-
         @foreach($sapis as $sapi)
             <div class="card">
-
                 <div class="card-image">
                     @if($sapi->foto_path)
                         <img src="{{ asset('storage/' . $sapi->foto_path) }}" alt="Foto Sapi">
                     @else
-                        <span class="no-image">Tidak ada foto</span>
+                        <div style="height:100%; display:flex; align-items:center; justify-content:center; color:#999; font-size: 12px;">No Image</div>
                     @endif
                 </div>
 
                 <div class="card-body">
-
-                    {{-- STATUS --}}
-                    <span class="status
-                        @if($sapi->status == 'Tersedia') status-tersedia
-                        @elseif($sapi->status == 'Booking') status-booking
-                        @else status-terjual
-                        @endif
-                    ">
-                        {{ $sapi->status }}
-                    </span>
-
-                    <div class="card-title">{{ $sapi->kode_sapi }}</div>
-
-                    <div class="card-info">Jenis: {{ $sapi->jenis_sapi }}</div>
-                    <div class="card-info">Bobot: {{ $sapi->bobot }} kg</div>
-
-                    <div class="price">
-                        Rp{{ number_format($sapi->harga_jual, 0, ',', '.') }}
+                    <div class="card-header-row">
+                        <div class="id-text">#{{ $sapi->kode_sapi }}</div>
+                        <span class="status-badge 
+                            @if($sapi->status == 'Tersedia') status-available 
+                            @elseif($sapi->status == 'Booking') status-booking 
+                            @else status-sold 
+                            @endif">
+                            @if($sapi->status == 'Tersedia') AVAILABLE
+                            @elseif($sapi->status == 'Terjual') SOLD
+                            @else {{ strtoupper($sapi->status) }}
+                            @endif
+                        </span>
                     </div>
 
-                    {{-- ACTIONS --}}
+                    <div class="card-description">
+                        {{ $sapi->jenis_sapi }} • {{ $sapi->bobot }} kg
+                    </div>
+
+                    <div class="price-text">
+                        RP{{ number_format($sapi->harga_jual, 0, ',', '.') }}
+                    </div>
+
                     <div class="actions">
-
-                        <a href="{{ route('sapi.edit', $sapi->id) }}"
-                           class="btn btn-edit
-                           {{ $sapi->status == 'Terjual' ? 'disabled' : '' }}">
-                            Edit
-                        </a>
-
+                        <a href="{{ route('sapi.edit', $sapi->id) }}" class="btn-minimal">EDIT</a>
+                        
                         <form method="POST" action="{{ route('sapi.destroy', $sapi->id) }}">
                             @csrf
                             @method('DELETE')
-
-                            <button type="submit"
-                                class="btn btn-delete
-                                {{ $sapi->status == 'Terjual' ? 'disabled' : '' }}"
-                                onclick="return confirm('Yakin ingin menghapus data ini?')">
-                                Hapus
+                            <button type="submit" class="btn-minimal" onclick="return confirm('Hapus data?')">
+                                HAPUS
                             </button>
                         </form>
-
+                        
+                    
                     </div>
-
                 </div>
             </div>
         @endforeach
-
     </div>
-
 </div>
 
 </body>
