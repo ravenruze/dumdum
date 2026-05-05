@@ -219,13 +219,13 @@
                 </div>
             </a>
 
-            <div class="menu-card">
-                <div class="icon-box">📝</div>
-                <div class="menu-text">
-                    <h3>Registrasi & Booking</h3>
-                    <p>Pencatatan data pemesanan sapi</p>
-                </div>
-            </div>
+        <div class="menu-card" onclick="window.location.href='{{ route('pesanan.index') }}'">
+            <div class="icon-box">📝</div>
+            <div class="menu-text">
+                 <h3>Registrasi & Booking</h3>
+                 <p>Pencatatan data pemesanan sapi</p>
+             </div>
+        </div>
 
             <div class="menu-card">
                 <div class="icon-box">💰</div>
