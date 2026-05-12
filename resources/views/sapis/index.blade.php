@@ -273,7 +273,7 @@
     </div>
 
 
-    <a href="{{ route('dashboard') }}">← Kembali ke Dashboard</a>
+    
 </div>
 
 </body>
