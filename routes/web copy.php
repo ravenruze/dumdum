@@ -18,7 +18,7 @@ use App\Http\Controllers\PesananController;
 |
 */
 
-Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard'); //->middleware(\App\Http\Middleware\RoleMiddleware::class . ':SuperAdmin,Admin');
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard')->middleware(\App\Http\Middleware\RoleMiddleware::class . ':SuperAdmin,Admin');
 
 Route::get('/', [AuthController::class, 'login']); 
 Route::post('/login', [AuthController::class, 'authenticate']); //->middleware(\App\Http\Middleware\RoleMiddleware::class . ':SuperAdmin,Admin');
