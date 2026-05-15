@@ -5,6 +5,7 @@ use App\Http\Controllers\SapiController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PesananController;
 use App\Models\Sapi;
+use App\Http\Controllers\PembayaranController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,3 +35,6 @@ Route::post('/sapi/{sapi}/booking', [PesananController::class, 'store'])->name('
 Route::get('/pesanan', [PesananController::class, 'index'])->name('pesanan.index');
 Route::get('/pesanan/{pesanan}', [PesananController::class, 'show'])->name('pesanan.show');
 Route::delete('/pesanan/{pesanan}', [PesananController::class, 'destroy'])->name('pesanan.destroy');
+
+
+Route::get('/pesanan/{pesanan}/pembayaran', [PembayaranController::class, 'create'])->name('pembayaran.create');

@@ -24,4 +24,9 @@ class Pesanan extends Model
     {
         return $this->belongsTo(Sapi::class); //PESANAN INI milik/merujuk ke satu SAPI
     }
+
+    public function pembayarans()
+    {
+    return $this->hasMany(Pembayaran::class);
+    }
 }
