@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\Sapi;
 use App\Models\Pesanan;
 use App\Models\Pembayaran;
+use Barryvdh\DomPDF\Facade\Pdf;
+
 
 class PembayaranController extends Controller
 {
@@ -75,6 +77,16 @@ class PembayaranController extends Controller
                     ->whereHas('pembayarans')
                     ->get();
         return view('pembayarans.index', compact('pesanans'));
+    }
+
+    public function invoice(Pesanan $pesanan)
+    {
+        $totalDibayar = $pesanan->pembayarans()->sum('jumlah_bayar');
+        $sisaBayar = $pesanan->sapi->harga_jual - $totalDibayar;
+
+        $pdf = Pdf::loadView('pembayarans.invoice', compact('pesanan', 'totalDibayar', 'sisaBayar'));
+        
+        return $pdf->download('invoice-' . $pesanan->id . '.pdf');
     }
 
 }

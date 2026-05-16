@@ -17,7 +17,13 @@
         
         <h3>{{ $pesanan->pembeli->nama }} — Sapi #{{ $pesanan->sapi->kode_sapi }}</h3>
         <p>Harga Sapi: Rp{{ number_format($pesanan->sapi->harga_jual, 0, ',', '.') }}</p>
-        <p>Status Pembayaran: {{ $pesanan->status_pembayaran }}</p>
+        <p>Status Pembayaran: 
+            @if($pesanan->status_pembayaran == 'Lunas')
+                <span style="color: green; font-weight: bold;">LUNAS</span>
+            @else
+                <span style="color: red; font-weight: bold;">BELUM LUNAS</span>
+            @endif
+        </p>
 
         <table style="width:100%; margin-top:10px;">
             <thead>
