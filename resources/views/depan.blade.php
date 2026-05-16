@@ -227,7 +227,7 @@
              </div>
         </div>
 
-            <div class="menu-card">
+            <div class="menu-card" onclick="window.location.href='{{ route('pembayaran.index') }}'">
                 <div class="icon-box">💰</div>
                 <div class="menu-text">
                     <h3>Pembayaran & Keuangan</h3>

@@ -13,6 +13,7 @@ class Pesanan extends Model
         'pembeli_id',
         'sapi_id',
         'status',
+        'status_pembayaran'
     ];
 
     public function pembeli()

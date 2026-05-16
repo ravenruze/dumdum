@@ -156,6 +156,16 @@
     <div class="header-section">
         <h1>Detail Pesanan</h1>
         <span class="status-badge">{{ $pesanan->status }}</span>
+        
+    <p>Status Pembayaran: 
+        @if($pesanan->status_pembayaran == 'Lunas')
+            <span style="color: green; font-weight: bold;">LUNAS</span>
+        @elseif($pesanan->status_pembayaran == 'DP')
+            <span style="color: orange; font-weight: bold;">DP</span>
+        @else
+            <span style="color: red; font-weight: bold;">BELUM BAYAR</span>
+        @endif
+    </p>
     </div>
 
     <div class="detail-grid">
@@ -210,11 +220,17 @@
     <div class="action-section">
         <a href="{{ route('pesanan.index') }}" class="btn-back">← KEMBALI KE DAFTAR</a>
 
+
+        @if($pesanan->status_pembayaran != 'Lunas')
+            <a href="{{ route('pembayaran.create', $pesanan->id) }}" class="btn-back">INPUT PEMBAYARAN</a>
+        @endif
+
         <form action="{{ route('pesanan.destroy', $pesanan->id) }}" method="POST" onsubmit="return confirm('Apakah Anda yakin ingin membatalkan pesanan ini?')">
             @csrf
             @method('DELETE')
             <button type="submit" class="btn-cancel">BATALKAN PESANAN</button>
         </form>
+
     </div>
 </div>
 

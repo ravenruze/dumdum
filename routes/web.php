@@ -38,3 +38,5 @@ Route::delete('/pesanan/{pesanan}', [PesananController::class, 'destroy'])->name
 
 
 Route::get('/pesanan/{pesanan}/pembayaran', [PembayaranController::class, 'create'])->name('pembayaran.create');
+Route::post('/pesanan/{pesanan}/pembayaran', [PembayaranController::class, 'store'])->name('pembayaran.store');
+Route::get('/pembayaran', [PembayaranController::class, 'index'])->name('pembayaran.index');
