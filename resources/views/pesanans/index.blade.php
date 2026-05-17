@@ -94,8 +94,8 @@
             display: inline-block;
         }
 
-        .status-booking { background: #f6ad55; color: white; }
-        .status-lunas { background: #38b2ac; color: white; }
+        .status-booking { background: #e53e3e; color: white; }
+        .status-lunas { background: #4bd18e; color: white; }
         .status-batal { background: #e53e3e; color: white; }
 
         /* --- BUTTONS --- */

@@ -2,38 +2,265 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <title>Input Pembayaran</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Input Pembayaran - Istana Qurban</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: #f5f6fa;
+            color: #222;
+            padding: 40px 20px;
+        }
+
+        .container {
+            background: #efefef; 
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            position: relative;
+        }
+
+        .modal-title {
+            color: #4c9b77; 
+            font-size: 24px;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 25px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .alert {
+            background: #f8d7da;
+            color: #721c24;
+            padding: 12px;
+            border-radius: 4px;
+            margin-bottom: 20px;
+            font-size: 13px;
+            border: 1px solid #f5c6cb;
+        }
+
+        /* --- INFO ROW STYLE --- */
+        .info-box {
+            background: #fff;
+            padding: 15px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            margin-bottom: 20px;
+        }
+
+        .info-row {
+            display: flex;
+            justify-content: space-between;
+            font-size: 13px;
+            padding: 6px 0;
+            border-bottom: 1px dashed #eee;
+        }
+
+        .info-row:last-child {
+            border-bottom: none;
+        }
+
+        .info-label {
+            font-weight: bold;
+            color: #555;
+        }
+
+        .info-value {
+            font-weight: 700;
+            color: #1e4d2b;
+        }
+
+        /* --- FORM LAYOUT --- */
+        .f-row { 
+            display: flex; 
+            align-items: center; 
+            margin-bottom: 15px; 
+        }
+
+        .f-row label { 
+            width: 120px; 
+            font-size: 13px; 
+            font-weight: bold;
+            color: #333;
+        }
+
+        .f-input { 
+            flex: 1; 
+            padding: 10px; 
+            border: 1px solid #ccc; 
+            font-size: 13px; 
+            outline: none; 
+            border-radius: 4px; 
+            background: #fff;
+            transition: border-color 0.2s;
+        }
+
+        .f-input:focus {
+            border-color: #4c9b77;
+        }
+
+        /* --- PHOTO PREVIEW BOX --- */
+        .photo-placeholder {
+            width: 100%;
+            height: 180px; 
+            background: #fff;
+            border: 2px dashed #ccc; 
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 4px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .photo-placeholder span {
+            color: #ccc;
+            font-size: 40px;
+        }
+
+        .photo-placeholder img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; 
+            display: none;     
+        }
+
+        /* --- BUTTONS --- */
+        .btn-simpan {
+            background: #d1e7dd;
+            border: 1px solid #4c9b77;
+            color: #1e4d2b;
+            padding: 12px;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 10px;
+            text-transform: uppercase;
+            border-radius: 4px;
+            font-size: 13px;
+            letter-spacing: 0.5px;
+            transition: all 0.2s;
+        }
+
+        .btn-simpan:hover {
+            background: #4c9b77;
+            color: white;
+        }
+
+        .btn-back {
+            display: block;
+            text-align: center;
+            margin-top: 15px;
+            text-decoration: none;
+            font-size: 12px;
+            color: #666;
+            font-weight: bold;
+            letter-spacing: 0.5px;
+            transition: color 0.2s;
+        }
+
+        .btn-back:hover {
+            color: #1e4d2b;
+        }
+
+        .section-label {
+            font-size: 13px; 
+            font-weight: bold; 
+            display: block; 
+            margin-bottom: 8px;
+            color: #333;
+        }
+    </style>
 </head>
 <body>
-    <h1>Input Pembayaran</h1>
 
-    <p>Pembeli        : {{ $pesanan->pembeli->nama }}</p>
-    <p>Sapi           : #{{ $pesanan->sapi->kode_sapi }}</p>
-    <p>Harga          : Rp{{ number_format($pesanan->sapi->harga_jual, 0, ',', '.') }}</p>
-    <p>Sudah Dibayar  : Rp{{ number_format($totalDibayar, 0, ',', '.') }}</p>
-    <p>Sisa Bayar     : Rp{{ number_format($sisaBayar, 0, ',', '.') }}</p>
+<div class="container">
+    <h2 class="modal-title">Input Pembayaran</h2>
 
+    {{-- Error Handling --}}
     @if ($errors->any())
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li style="color:red">{{ $error }}</li>
-            @endforeach
-        </ul>
+        <div class="alert">
+            <ul style="margin-left: 15px;">
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
     @endif
 
+    {{-- Ringkasan Data Pesanan --}}
+    <div class="info-box">
+        <div class="info-row">
+            <span class="info-label">Pembeli</span>
+            <span class="info-value">{{ $pesanan->pembeli->nama }}</span>
+        </div>
+        <div class="info-row">
+            <span class="info-label">Sapi</span>
+            <span class="info-value">#{{ $pesanan->sapi->kode_sapi }}</span>
+        </div>
+        <div class="info-row">
+            <span class="info-label">Harga</span>
+            <span class="info-value">Rp{{ number_format($pesanan->sapi->harga_jual, 0, ',', '.') }}</span>
+        </div>
+        <div class="info-row">
+            <span class="info-label">Sudah Dibayar</span>
+            <span class="info-value" style="color: #38b2ac;">Rp{{ number_format($totalDibayar, 0, ',', '.') }}</span>
+        </div>
+        <div class="info-row">
+            <span class="info-label">Sisa Bayar</span>
+            <span class="info-value" style="color: #e53e3e;">Rp{{ number_format($sisaBayar, 0, ',', '.') }}</span>
+        </div>
+    </div>
+
+    {{-- Form Input --}}
     <form action="{{ route('pembayaran.store', $pesanan->id) }}" method="POST" enctype="multipart/form-data">
         @csrf
-        <div>
-            <label>Jumlah Bayar:</label>
-            <input type="number" name="jumlah_bayar" value="{{ old('jumlah_bayar') }}" required>
-        </div>
-        <div>
-            <label>Foto Bukti Transfer:</label>
-            <input type="file" name="foto_bukti" accept="image/*">
-        </div>
-        <button type="submit">Simpan Pembayaran</button>
-    </form>
 
-    <a href="{{ route('pesanan.show', $pesanan->id) }}">← Kembali ke Detail Pesanan</a>
+        <div class="f-row">
+            <label>Jumlah Bayar :</label>
+            <input type="number" name="jumlah_bayar" class="f-input" placeholder="Rp." value="{{ old('jumlah_bayar') }}" required>
+        </div>
+
+        <label class="section-label">Preview Bukti Transfer :</label>
+        <div class="photo-placeholder">
+            <span id="cam-icon">📷</span>
+            <img id="img-preview" src="#" alt="Preview Bukti Transfer">
+        </div>
+
+        <label class="section-label">Upload Bukti Transfer :</label>
+        <input type="file" name="foto_bukti" id="foto_input" accept="image/*" style="font-size:12px; margin-bottom:20px; width: 100%; cursor: pointer;">
+
+        <button type="submit" class="btn-simpan">Simpan Pembayaran</button>
+        <a href="{{ route('pesanan.show', $pesanan->id) }}" class="btn-back">← KEMBALI KE DETAIL PESANAN</a>
+    </form>
+</div>
+
+{{-- INSTANT PREVIEW --}}
+<script>
+    const fotoInput = document.getElementById('foto_input');
+    const imgPreview = document.getElementById('img-preview');
+    const camIcon = document.getElementById('cam-icon');
+
+    fotoInput.onchange = evt => {
+        const [file] = fotoInput.files;
+        if (file) {
+            imgPreview.src = URL.createObjectURL(file);
+            imgPreview.style.display = 'block';
+            camIcon.style.display = 'none';
+        }
+    }
+</script>
+
 </body>
 </html>

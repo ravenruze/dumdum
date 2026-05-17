@@ -2,58 +2,183 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invoice Pembayaran - Istana Qurban</title>
+
     <style>
-        body { font-family: sans-serif; font-size: 13px; color: #222; }
-        .header { text-align: center; margin-bottom: 30px; }
-        .header h1 { font-size: 22px; margin-bottom: 5px; }
-        .header p { color: #666; }
-        table { width: 100%; border-collapse: collapse; margin-top: 15px; }
-        th, td { padding: 8px 10px; border: 1px solid #ddd; }
-        th { background: #f0f0f0; }
-        .total-row { font-weight: bold; }
-        .footer { margin-top: 40px; text-align: center; color: #888; font-size: 11px; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: #fff;
+            color: #222;
+            padding: 40px;
+        }
+
+        /* --- HEADER NOTA --- */
+        .header {
+            text-align: center;
+            margin-bottom: 35px;
+            border-bottom: 3px double #1e4d2b;
+            padding-bottom: 15px;
+        }
+
+        .header h1 {
+            color: #1e4d2b;
+            font-size: 26px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+        }
+
+        .header p {
+            color: #555;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .header .date {
+            color: #888;
+            font-size: 12px;
+            margin-top: 3px;
+            font-weight: normal;
+        }
+
+        h3 {
+            color: #1e4d2b;
+            font-size: 14px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-top: 30px;
+            margin-bottom: 10px;
+        }
+
+        /* --- TABLE STYLING --- */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+            font-size: 13px;
+        }
+
+        th, td {
+            padding: 10px 12px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+
+        th {
+            background-color: #4c9b77;
+            color: white;
+            text-transform: uppercase;
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+        }
+
+        .table-info td:first-child {
+            width: 150px;
+            background: #f9f9f9;
+            font-weight: bold;
+            color: #444;
+        }
+
+        .table-info td:last-child {
+            font-weight: 600;
+        }
+
+        .total-row {
+            font-weight: bold;
+            background-color: #f5f6fa;
+        }
+
+        .total-row td {
+            color: #222;
+        }
+
+        /* --- STATUS TABLE --- */
+        .table-status {
+            width: auto; 
+            margin-top: 25px;
+            border-collapse: collapse;
+        }
+
+        .table-status td {
+            border: none !important; 
+            padding: 0 10px 0 0 !important; 
+            vertical-align: middle; 
+        }
+
+        .status-label {
+            font-size: 13px;
+            font-weight: bold;
+            color: #222;
+        }
+
         .status { 
             display: inline-block; 
-            padding: 4px 10px; 
+            padding: 5px 12px; 
             border-radius: 4px;
-            font-weight: bold;
+            font-size: 11px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            white-space: nowrap; 
         }
-        .lunas { background: #d4edda; color: #155724; }
-        .belum { background: #fff3cd; color: #856404; }
+
+        .lunas { background: #4bd18e; color: white; }
+        .belum { background: #e53e3e; color: white; }
+
+        /* --- FOOTER NOTA --- */
+        .footer {
+            margin-top: 60px;
+            text-align: center;
+            color: #777;
+            font-size: 11px;
+            border-top: 1px dashed #ddd;
+            padding-top: 15px;
+            line-height: 1.6;
+        }
     </style>
 </head>
 <body>
 
     <div class="header">
         <h1>ISTANA QURBAN</h1>
-        <p>Invoice Pembayaran</p>
-        <p>Tanggal Cetak: {{ now()->format('d M Y') }}</p>
+        <p>INVOICE PEMBAYARAN</p>
+        <p class="date">Tanggal Cetak: {{ now()->format('d M Y') }}</p>
     </div>
 
-    <table>
+    <table class="table-info">
         <tr>
-            <td><strong>Nama Pembeli</strong></td>
+            <td>Nama Pembeli</td>
             <td>{{ $pesanan->pembeli->nama }}</td>
         </tr>
         <tr>
-            <td><strong>No HP</strong></td>
+            <td>No HP</td>
             <td>{{ $pesanan->pembeli->no_hp }}</td>
         </tr>
         <tr>
-            <td><strong>Alamat</strong></td>
+            <td>Alamat</td>
             <td>{{ $pesanan->pembeli->alamat }}</td>
         </tr>
         <tr>
-            <td><strong>Kode Sapi</strong></td>
-            <td>#{{ $pesanan->sapi->kode_sapi }}</td>
+            <td>Kode Sapi</td>
+            <td><span style="color: #1e4d2b;">#{{ $pesanan->sapi->kode_sapi }}</span></td>
         </tr>
         <tr>
-            <td><strong>Harga Sapi</strong></td>
-            <td>Rp{{ number_format($pesanan->sapi->harga_jual, 0, ',', '.') }}</td>
+            <td>Harga Sapi</td>
+            <td style="color: #1e4d2b;">Rp{{ number_format($pesanan->sapi->harga_jual, 0, ',', '.') }}</td>
         </tr>
     </table>
 
-    <h3 style="margin-top: 25px;">Riwayat Pembayaran</h3>
+    <h3>Riwayat Pembayaran</h3>
     <table>
         <thead>
             <tr>
@@ -68,28 +193,33 @@
             <tr>
                 <td>{{ $pembayaran->tanggal_transaksi }}</td>
                 <td>{{ $pembayaran->tipe }}</td>
-                <td>Rp{{ number_format($pembayaran->jumlah_bayar, 0, ',', '.') }}</td>
-                <td>Rp{{ number_format($pembayaran->sisa_bayar, 0, ',', '.') }}</td>
+                <td style="font-weight: 600;">Rp{{ number_format($pembayaran->jumlah_bayar, 0, ',', '.') }}</td>
+                <td style="color: #e53e3e;">Rp{{ number_format($sisaBayar, 0, ',', '.') }}</td>
             </tr>
             @endforeach
+            
             <tr class="total-row">
-                <td colspan="2">Total Dibayar</td>
-                <td>Rp{{ number_format($totalDibayar, 0, ',', '.') }}</td>
-                <td>Rp{{ number_format($sisaBayar, 0, ',', '.') }}</td>
+                <td colspan="2" style="text-align: right; text-transform: uppercase; font-size: 11px; letter-spacing: 0.5px;">Total Dibayar:</td>
+                <td style="color: #1e4d2b;">Rp{{ number_format($totalDibayar, 0, ',', '.') }}</td>
+                <td style="color: #e53e3e;">Rp{{ number_format($sisaBayar, 0, ',', '.') }}</td>
             </tr>
         </tbody>
     </table>
 
-    <p style="margin-top: 20px;">
-        Status: 
-        <span class="status {{ $pesanan->status_pembayaran == 'Lunas' ? 'lunas' : 'belum' }}">
-            {{ $pesanan->status_pembayaran == 'Lunas' ? '✅ LUNAS' : '⚠️ BELUM LUNAS' }}
-        </span>
-    </p>
+    <table class="table-status">
+        <tr>
+            <td class="status-label">STATUS PEMBAYARAN:</td>
+            <td>
+                <span class="status {{ $pesanan->status_pembayaran == 'Lunas' ? 'lunas' : 'belum' }}">
+                    {{ $pesanan->status_pembayaran == 'Lunas' ? 'LUNAS' : 'BELUM LUNAS' }}
+                </span>
+            </td>
+        </tr>
+    </table>
 
     <div class="footer">
-        <p>Dokumen ini dicetak otomatis oleh Sistem Istana Qurban</p>
-        <p>Terima kasih atas kepercayaan Anda</p>
+        <p>Dokumen ini dicetak otomatis oleh Sistem Manajemen Istana Qurban</p>
+        <p>Terima kasih atas kerja sama dan kepercayaan Anda.</p>
     </div>
 
 </body>
