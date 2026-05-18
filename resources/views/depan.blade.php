@@ -1,3 +1,7 @@
+@extends('layout.app')
+@section('title', 'Dashboard')
+@section('content')
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -17,17 +21,17 @@
             --shadow: 0 12px 25px rgba(0,0,0,0.05);
         }
 
+        h1 {
+            margin-bottom: 15px;
+            font-size: 28px;
+            font-weight: 800;    
+            color: #ffffff;      
+        }
+        
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            background: linear-gradient(to bottom, #eef4f1, #f7faf9);
-            color: var(--text);
-            padding: 35px 20px;
         }
 
         .wrapper {
@@ -247,3 +251,4 @@
 
 </body>
 </html>
+@endsection

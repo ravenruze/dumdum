@@ -1,95 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layout.app')
+@section('title', 'Katalog Sapi - Istana Qurban')
+@section('content')
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Katalog Sapi - Istana Qurban</title>
 
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
-        body {
-            background: #f5f6fa;
-            color: #222;
-        }
-
-        /* --- NAVBAR --- */
-        .navbar {
-            background-color: #d1e7dd; 
-            padding: 12px 4%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-            margin-bottom: 20px;
-        }
-
-        .navbar-brand {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-weight: 1000;
-            color: #1e4d2b;
-            text-transform: uppercase;
-            font-size: 18px;
-        }
-
-        .navbar-brand img {
-            height: 45px;
-            width: auto;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 20px;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: #444;
-            font-weight: 800;
-            font-size: 14px;
-        }
-
-        .nav-links a.active {
-            color: #1e4d2b;
-            border-bottom: 2px solid #1e4d2b;
-            padding-bottom: 5px;
-        }
 
         /* --- LAYOUT --- */
-        .container {
-            width: 95%;
-            margin: 20px auto;
-        }
-
-        h1 {
-            margin-bottom: 15px;
-            font-size: 28px;
-            font-weight: 800;    
-            color: #1e4d2b;      
-        }
-
-        .top-bar {
-            display: flex;
-            justify-content: flex-end;
-            margin-bottom: 20px;
-        }
-
-        .btn-add {
-            text-decoration: none;
-            background: #4c9b77;
-            color: white;
-            padding: 8px 15px;
-            border-radius: 6px;
-            font-weight: bold;
-            font-size: 14px;
-        }
 
         .grid {
             display: grid;
@@ -193,8 +109,8 @@
     </style>
 </head>
 <body>
-
-<nav class="navbar">
+{{-- @include("layout.navbar") --}}
+{{-- <nav class="navbar">
     <div class="navbar-brand">
         <img src="{{ asset('img/logo-istana-qurban.png') }}" alt="Logo Istana Qurban"> 
         <span>Istana Qurban</span>
@@ -207,7 +123,7 @@
         <a href="#">Laporan</a>
     </div>
     <div class="user-profile">👤</div>
-</nav>
+</nav> --}}
 
 <div class="container">
 
@@ -273,8 +189,8 @@
     </div>
 
 
-    
 </div>
 
 </body>
 </html>
+@endsection

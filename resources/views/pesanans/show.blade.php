@@ -1,17 +1,13 @@
+@extends('layout.app2')
+@section('title', 'Detail Pesanan - Istana Qurban')
+@section('content')
 <!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Detail Pesanan - Istana Qurban</title>
 
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
 
         body {
             background: #f5f6fa;
@@ -318,3 +314,4 @@
 
 </body>
 </html>
+@endsection

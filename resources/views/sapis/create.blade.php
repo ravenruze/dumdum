@@ -1,18 +1,13 @@
+@extends('layout.app2')
+@section('title', 'Tambah Sapi - Istana Qurban')
+@section('content')
 <!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tambah Sapi - Istana Qurban</title>
 
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
         body {
             background: #f5f6fa;
             color: #222;
@@ -48,7 +43,6 @@
             border: 1px solid #f5c6cb;
         }
 
-        /* Layout Baris Horizontal */
         .f-row { 
             display: flex; 
             align-items: center; 
@@ -76,19 +70,24 @@
             border-color: #4c9b77;
         }
 
-        /* Box Preview Placeholder */
-        .photo-placeholder {
+        /* Box Preview */
+        .current-photo-preview {
             width: 100%;
-            height: 150px;
+            height: 180px; /* Sedikit lebih tinggi biar puas liatnya */
             background: #fff;
-            border: 1px solid #ccc;
+            border: 2px dashed #ccc; /* Pake garis putus-putus biar estetik */
             margin-bottom: 15px;
             display: flex;
             align-items: center;
             justify-content: center;
             border-radius: 4px;
-            color: #ddd;
-            font-size: 50px;
+            overflow: hidden;
+        }
+
+        .current-photo-preview img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
 
         .btn-simpan {
@@ -133,7 +132,6 @@
 <div class="container">
     <h2 class="modal-title">Tambah Data Sapi</h2>
 
-    {{-- Error Handling --}}
     @if ($errors->any())
         <div class="alert">
             <ul style="margin-left: 15px;">
@@ -148,12 +146,15 @@
         @csrf
 
         <label class="section-label">Preview Foto :</label>
-        <div class="photo-placeholder">
-            <span>📷</span>
+        <div class="current-photo-preview" id="preview-container">
+            {{-- Default icon kalau belum pilih foto --}}
+            <span id="preview-placeholder" style="color: #ccc; font-size: 40px;">📷</span>
+            <img id="image-preview" src="" style="display: none;">
         </div>
 
         <label class="section-label">Upload Foto :</label>
-        <input type="file" name="foto_path" accept="image/*" style="font-size:11px; margin-bottom:20px; width: 100%;">
+        {{-- Kita tambah id="foto_input" untuk dipantau JavaScript --}}
+        <input type="file" name="foto_path" id="foto_input" accept="image/*" style="font-size:11px; margin-bottom:20px; width: 100%;">
 
         <div class="f-row">
             <label>Kode :</label>
@@ -175,11 +176,28 @@
             <input type="number" name="harga_jual" class="f-input" placeholder="Rp." value="{{ old('harga_jual') }}" required>
         </div>
 
-
         <button type="submit" class="btn-simpan">Simpan Sapi</button>
         <a href="{{ route('sapi.index') }}" class="btn-back">KEMBALI KE KATALOG</a>
     </form>
 </div>
 
+{{-- SCRIPT PREVIEW --}}
+<script>
+    const fotoInput = document.getElementById('foto_input');
+    const imagePreview = document.getElementById('image-preview');
+    const placeholder = document.getElementById('preview-placeholder');
+
+    fotoInput.onchange = evt => {
+        const [file] = fotoInput.files;
+        if (file) {
+            // Tampilkan gambar, sembunyikan icon kamera
+            imagePreview.src = URL.createObjectURL(file);
+            imagePreview.style.display = 'block';
+            placeholder.style.display = 'none';
+        }
+    }
+</script>
+
 </body>
 </html>
+@endsection

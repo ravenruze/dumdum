@@ -1,3 +1,6 @@
+@extends('layout.app')
+@section('title', 'Katalog Sapi - Istana Qurban')
+@section('content')
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -6,22 +9,10 @@
     <title>Daftar Pesanan - Istana Qurban</title>
 
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
-        body {
-            background: #f5f6fa;
-            color: #222;
-            padding: 40px 20px;
-        }
 
         .container {
-            max-width: 1000px;
-            margin: 0 auto;
+            width: 95%;
+            margin:  20px auto;
         }
 
         h1 {
@@ -186,8 +177,8 @@
         </table>
     </div>
 
-    <a href="{{ route('dashboard') }}" class="btn-back">← KEMBALI KE DASHBOARD</a>
 </div>
 
 </body>
 </html>
+@endsection
