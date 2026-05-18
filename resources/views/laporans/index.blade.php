@@ -3,23 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <title>Rekap Penjualan</title>
-    {{-- Chart.js untuk pie chart --}}
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
     <h1>Rekap Penjualan</h1>
 
-    {{-- 1. RINGKASAN HARI INI --}}
-    <h2>Hari Ini</h2>
-    <p>Sapi Terjual  : {{ $sapiterjualHariIni }} ekor</p>
-    <p>Pemasukan     : Rp{{ number_format($pemasukanHariIni, 0, ',', '.') }}</p>
+    {{-- DATE PICKER --}}
+    <form method="GET" action="{{ route('laporan.index') }}">
+        <label>Dari:</label>
+        <input type="date" name="dari" value="{{ $dari }}">
+        <label>Sampai:</label>
+        <input type="date" name="sampai" value="{{ $sampai }}">
+        <button type="submit">Filter</button>
+        <a href="{{ route('laporan.index', ['semua' => true]) }}"> Tampilkan Semua Data</a>
+    </form>
 
-    {{-- 2. PIE CHART --}}
+    {{-- RINGKASAN SESUAI FILTER --}}
+    <h2>{{ $semuaData ? 'Ringkasan Semua Data' : 'Ringkasan ' . $dari . ' s/d ' . $sampai }}</h2>
+    <p>Sapi Terjual  : {{ $sapiTerjualFilter }} ekor</p>
+    <p>Pemasukan     : Rp{{ number_format($pemasukanFilter, 0, ',', '.') }}</p>
+
+    {{-- PIE CHART --}}
     <h2>Komposisi Stok Sapi</h2>
-    <canvas id="pieChart" width="300" height="300"></canvas>
+    <div style="max-width: 300px;">
+        <canvas id="pieChart"></canvas>
+    </div>
     <script>
-        const ctx = document.getElementById('pieChart').getContext('2d');
-        new Chart(ctx, {
+        new Chart(document.getElementById('pieChart'), {
             type: 'pie',
             data: {
                 labels: ['Tersedia', 'Dipesan', 'Terjual'],
@@ -31,13 +41,49 @@
         });
     </script>
 
-    {{-- 3. REKAP KESELURUHAN --}}
+    {{-- BAR CHART OMSET --}}
+    <h2>
+        Omset {{ $semuaData ? 'Total' : $dari . ' s/d ' . $sampai }}
+        @if(!$semuaData)
+            — <a href="{{ route('laporan.index', ['semua' => true]) }}">Total</a>
+        @endif
+    </h2>
+    <div style="max-width: 600px;">
+        <canvas id="barChart"></canvas>
+    </div>
+    <script>
+        new Chart(document.getElementById('barChart'), {
+            type: 'bar',
+            data: {
+                labels: {!! json_encode($labelHari) !!},
+                datasets: [{
+                    label: 'Omset (Rp)',
+                    data: {!! json_encode($dataOmset) !!},
+                    backgroundColor: '#4c9b77',
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        ticks: {
+                            callback: function(value) {
+                                return 'Rp' + value.toLocaleString('id-ID');
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+
+    {{-- REKAP KESELURUHAN --}}
+    <hr style="margin: 30px 0;">
     <h2>Rekap Keseluruhan</h2>
     <p>Total Sapi Terjual  : {{ $totalTerjual }} ekor</p>
     <p>Total Pemasukan     : Rp{{ number_format($totalPemasukan, 0, ',', '.') }}</p>
     <p>Sisa Stok           : {{ $totalTersedia + $totalDipesan }} ekor</p>
 
-    {{-- 4. TABEL DETAIL PENJUALAN --}}
+    {{-- TABEL DETAIL PENJUALAN --}}
     <h2>Detail Penjualan</h2>
     <table border="1">
         <thead>
@@ -58,13 +104,13 @@
             </tr>
             @empty
             <tr>
-                <td colspan="4">Belum ada penjualan.</td>
+                <td colspan="4" style="text-align:center;">Belum ada penjualan.</td>
             </tr>
             @endforelse
         </tbody>
     </table>
 
-    {{-- 5. LAPORAN STOK AKHIR --}}
+    {{-- LAPORAN STOK AKHIR --}}
     <h2>Stok Tersedia</h2>
     <table border="1">
         <thead>
@@ -85,7 +131,7 @@
             </tr>
             @empty
             <tr>
-                <td colspan="4">Tidak ada stok tersedia.</td>
+                <td colspan="4" style="text-align:center;">Tidak ada stok tersedia.</td>
             </tr>
             @endforelse
         </tbody>
@@ -100,6 +146,7 @@
                 <th>Harga</th>
                 <th>Nama Pembeli</th>
                 <th>Status Pembayaran</th>
+                <th>Aksi</th>
             </tr>
         </thead>
         <tbody>
@@ -109,11 +156,20 @@
                 <td>{{ $pesanan->sapi->jenis_sapi }}</td>
                 <td>Rp{{ number_format($pesanan->sapi->harga_jual, 0, ',', '.') }}</td>
                 <td>{{ $pesanan->pembeli->nama }}</td>
-                <td>{{ $pesanan->status_pembayaran }}</td>
+                <td>
+                    @if($pesanan->status_pembayaran == 'Lunas')
+                        <span style="color:green;">LUNAS</span>
+                    @else
+                        <span style="color:red;">BELUM LUNAS</span>
+                    @endif
+                </td>
+                <td>
+                    <a href="{{ route('pesanan.show', $pesanan->id) }}">Lihat Detail</a>
+                </td>
             </tr>
             @empty
             <tr>
-                <td colspan="5">Tidak ada sapi dipesan.</td>
+                <td colspan="6" style="text-align:center;">Tidak ada sapi dipesan.</td>
             </tr>
             @endforelse
         </tbody>
