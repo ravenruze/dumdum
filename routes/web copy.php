@@ -5,22 +5,23 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SapiController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PesananController;
-use App\Http\Controllers\PembayaranController;
+// use App\Models\Sapi;
 
 /*
 |--------------------------------------------------------------------------
 | Web Routes
 |--------------------------------------------------------------------------
+|
+| Here is where you can register web routes for your application. These
+| routes are loaded by the RouteServiceProvider and all of them will
+| be assigned to the "web" middleware group. Make something great!
+|
 */
 
-Route::get('/', function () {
-    return view('depan');
-});
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard')->middleware(\App\Http\Middleware\RoleMiddleware::class . ':SuperAdmin,Admin');
 
-Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-
-Route::get('/login', [AuthController::class, 'login']);
-Route::post('/login', [AuthController::class, 'authenticate']);
+Route::get('/', [AuthController::class, 'login']); 
+Route::post('/login', [AuthController::class, 'authenticate']); //->middleware(\App\Http\Middleware\RoleMiddleware::class . ':SuperAdmin,Admin');
 Route::post('/logout', [AuthController::class, 'logout']);
 
 Route::get('/sapi', [SapiController::class, 'index'])->name('sapi.index')->middleware(\App\Http\Middleware\RoleMiddleware::class . ':SuperAdmin,Admin');
@@ -35,8 +36,3 @@ Route::post('/sapi/{sapi}/booking', [PesananController::class, 'store'])->name('
 Route::get('/pesanan', [PesananController::class, 'index'])->name('pesanan.index')->middleware(\App\Http\Middleware\RoleMiddleware::class . ':SuperAdmin,Admin');
 Route::get('/pesanan/{pesanan}', [PesananController::class, 'show'])->name('pesanan.show')->middleware(\App\Http\Middleware\RoleMiddleware::class . ':SuperAdmin,Admin');
 Route::delete('/pesanan/{pesanan}', [PesananController::class, 'destroy'])->name('pesanan.destroy')->middleware(\App\Http\Middleware\RoleMiddleware::class . ':SuperAdmin,Admin');
-
-Route::get('/pesanan/{pesanan}/pembayaran', [PembayaranController::class, 'create'])->name('pembayaran.create');
-Route::post('/pesanan/{pesanan}/pembayaran', [PembayaranController::class, 'store'])->name('pembayaran.store');
-Route::get('/pembayaran', [PembayaranController::class, 'index'])->name('pembayaran.index');
-Route::get('/pesanan/{pesanan}/invoice', [PembayaranController::class, 'invoice'])->name('pembayaran.invoice');
