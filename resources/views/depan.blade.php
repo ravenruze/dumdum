@@ -224,7 +224,7 @@
             </div>
         </div>
 
-        <div class="menu-card">
+        <div class="menu-card" onclick="window.location.href='{{ route('laporan.index') }}'">
             <div class="icon-box">📊</div>
             <div class="menu-text">
                 <h3>Rekap Penjualan</h3>

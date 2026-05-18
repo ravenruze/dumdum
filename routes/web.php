@@ -6,6 +6,7 @@ use App\Http\Controllers\SapiController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PesananController;
 use App\Http\Controllers\PembayaranController;
+use App\Http\Controllers\LaporanController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,3 +39,5 @@ Route::get('/pesanan/{pesanan}/pembayaran', [PembayaranController::class, 'creat
 Route::post('/pesanan/{pesanan}/pembayaran', [PembayaranController::class, 'store'])->name('pembayaran.store');
 Route::get('/pembayaran', [PembayaranController::class, 'index'])->name('pembayaran.index');
 Route::get('/pesanan/{pesanan}/invoice', [PembayaranController::class, 'invoice'])->name('pembayaran.invoice');
+
+Route::get('/laporan', [LaporanController::class, 'index'])->name('laporan.index');
