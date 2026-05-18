@@ -13,13 +13,11 @@ use App\Http\Controllers\PembayaranController;
 |--------------------------------------------------------------------------
 */
 
-Route::get('/', function () {
-    return view('depan');
-});
+Route::get('/', function () { return view('depan'); });
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
-Route::get('/login', [AuthController::class, 'login']);
+Route::get('/', [AuthController::class, 'login']);
 Route::post('/login', [AuthController::class, 'authenticate']);
 Route::post('/logout', [AuthController::class, 'logout']);
 
