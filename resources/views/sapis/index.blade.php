@@ -1,7 +1,6 @@
 @extends('layout.app')
 @section('title', 'Katalog Sapi - Istana Qurban')
 @section('content')
-<head>
 
     <style>
 
@@ -107,23 +106,6 @@
             display: inline;
         }
     </style>
-</head>
-<body>
-{{-- @include("layout.navbar") --}}
-{{-- <nav class="navbar">
-    <div class="navbar-brand">
-        <img src="{{ asset('img/logo-istana-qurban.png') }}" alt="Logo Istana Qurban"> 
-        <span>Istana Qurban</span>
-    </div>
-    <div class="nav-links">
-        <a href="{{ route('dashboard') }}">Dashboard</a>
-        <a href="#" class="active">Katalog Sapi</a>
-        <a href="#">Registrasi & Booking</a>
-        <a href="#">Transaksi</a>
-        <a href="#">Laporan</a>
-    </div>
-    <div class="user-profile">👤</div>
-</nav> --}}
 
 <div class="container">
 
@@ -191,6 +173,4 @@
 
 </div>
 
-</body>
-</html>
 @endsection

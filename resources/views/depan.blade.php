@@ -1,13 +1,6 @@
 @extends('layout.app')
-@section('title', 'Dashboard')
+@section('title', 'Dashboard - Istana Qurban')
 @section('content')
-
-<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard - Istana Qurban</title>
 
     <style>
         :root {
@@ -177,8 +170,6 @@
             }
         }
     </style>
-</head>
-<body>
 
     <div class="wrapper">
         <header>
@@ -249,6 +240,4 @@
         </div>
     </div>
 
-</body>
-</html>
 @endsection

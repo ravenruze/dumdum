@@ -1,17 +1,8 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Invoice Pembayaran - Istana Qurban</title>
+@extends('layout.app2')
+@section('title', 'Invoice Pembayaran - Istana Qurban')
+@section('content')
 
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
 
         body {
             background: #fff;
@@ -146,8 +137,6 @@
             line-height: 1.6;
         }
     </style>
-</head>
-<body>
 
     <div class="header">
         <h1>ISTANA QURBAN</h1>
@@ -222,5 +211,4 @@
         <p>Terima kasih atas kerja sama dan kepercayaan Anda.</p>
     </div>
 
-</body>
-</html>
+@endsection

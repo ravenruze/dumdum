@@ -1,231 +1,207 @@
 @extends('layout.app2')
 @section('title', 'Detail Pesanan - Istana Qurban')
 @section('content')
-<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <style>
+<style>
+    /* --- GRID LAYOUT --- */
+    .detail-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+    }
 
-        body {
-            background: #f5f6fa;
-            color: #222;
-            padding: 40px 20px;
-        }
+    .header-section {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 2px solid #4c9b77;
+        padding-bottom: 18px;
+        margin-bottom: 30px;
+    }
 
-        .container {
-            max-width: 850px;
-            margin: 0 auto;
-            background: #fff;
-            padding: 35px;
-            border-radius: 8px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            border: 1px solid #ddd;
-        }
+    h1 {
+        color: #1e4d2b;
+        font-size: 24px;
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        margin: 0;
+    }
 
-        /* --- HEADER SECTION STYLE --- */
-        .header-section {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 2px solid #4c9b77;
-            padding-bottom: 18px;
-            margin-bottom: 30px;
-        }
+    .header-status-block {
+        display: flex;
+        flex-direction: row;
+        gap: 10px;
+        align-items: center;
+    }
 
-        h1 {
-            color: #1e4d2b;
-            font-size: 24px;
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
+    /* --- BADGES --- */
+    .status-badge {
+        padding: 5px 14px;
+        border-radius: 4px;
+        font-size: 11px;
+        font-weight: 800;
+        background: #f6ad55;
+        color: white;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        display: inline-block;
+    }
 
-        .header-status-block {
-            display: flex;
-            flex-direction: row;
-            gap: 10px;
-            align-items: center;
-        }
+    .pay-status {
+        font-size: 11px;
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        padding: 5px 14px;
+        border-radius: 4px;
+        display: inline-block;
+    }
+    .pay-lunas { background: #4bd18e; color: white; }
+    .pay-belum { background: #e53e3e; color: white; }
 
-        /* --- BADGES --- */
-        .status-badge {
-            padding: 5px 14px;
-            border-radius: 4px;
-            font-size: 11px;
-            font-weight: 800;
-            background: #f6ad55;
-            color: white;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            display: inline-block;
-        }
+    h3 {
+        font-size: 13px;
+        font-weight: 800;
+        color: #1e4d2b;
+        text-transform: uppercase;
+        margin-bottom: 20px;
+        border-left: 4px solid #4c9b77;
+        padding-left: 10px;
+        letter-spacing: 0.5px;
+    }
 
-        .pay-status {
-            font-size: 11px;
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            padding: 5px 14px;
-            border-radius: 4px;
-            display: inline-block;
-        }
-        .pay-lunas { background: #4bd18e; color: white; }
-        .pay-belum { background: #e53e3e; color: white; }
+    /* --- INFO ROW LAYOUT --- */
+    .info-group {
+        margin-bottom: 12px;
+        font-size: 13px;
+        display: flex;
+        line-height: 1.5;
+    }
 
-        /* --- GRID LAYOUT --- */
-        .detail-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
-        }
+    .info-label {
+        width: 90px;
+        font-weight: bold;
+        color: #666;
+    }
 
-        h3 {
-            font-size: 13px;
-            font-weight: 800;
-            color: #1e4d2b;
-            text-transform: uppercase;
-            margin-bottom: 20px;
-            border-left: 4px solid #4c9b77;
-            padding-left: 10px;
-            letter-spacing: 0.5px;
-        }
+    .info-separator {
+        width: 15px;
+        color: #666;
+        font-weight: bold;
+    }
 
-        /* --- INFO ROW LAYOUT --- */
-        .info-group {
-            margin-bottom: 12px;
-            font-size: 13px;
-            display: flex;
-            line-height: 1.5;
-        }
+    .info-value {
+        flex: 1;
+        color: #222;
+        font-weight: 600;
+    }
 
-        .info-label {
-            width: 90px;
-            font-weight: bold;
-            color: #666;
-        }
+    /* --- PHOTO SAPI --- */
+    .photo-box {
+        width: 100%;
+        height: 220px;
+        border-radius: 6px;
+        overflow: hidden;
+        border: 1px solid #ccc;
+        background: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 20px;
+        box-shadow: inset 0 2px 4px rgba(0,0,0,0.02);
+    }
 
-        .info-separator {
-            width: 15px;
-            color: #666;
-            font-weight: bold;
-        }
+    .photo-box img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
 
-        .info-value {
-            flex: 1;
-            color: #222;
-            font-weight: 600;
-        }
+    /* --- ACTION SECTION & BUTTONS --- */
+    .action-section {
+        margin-top: 40px;
+        padding-top: 25px;
+        border-top: 1px solid #eee;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 10px;
+        flex-wrap: wrap;
+    }
 
-        /* --- PHOTO SAPI --- */
-        .photo-box {
-            width: 100%;
-            height: 220px;
-            border-radius: 6px;
-            overflow: hidden;
-            border: 1px solid #ccc;
-            background: #fff;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 20px;
-            box-shadow: inset 0 2px 4px rgba(0,0,0,0.02);
-        }
+    .action-group-right {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+    }
 
-        .photo-box img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
+    /* Base Button Style */
+    .btn {
+        text-decoration: none;
+        padding: 10px 18px;
+        border-radius: 4px;
+        font-size: 12px;
+        font-weight: 800;
+        letter-spacing: 0.5px;
+        display: inline-block;
+        text-align: center;
+        text-transform: uppercase;
+        transition: all 0.2s;
+        cursor: pointer;
+        outline: none;
+    }
 
-        /* --- ACTION SECTION & BUTTONS --- */
-        .action-section {
-            margin-top: 40px;
-            padding-top: 25px;
-            border-top: 1px solid #eee;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 10px;
-            flex-wrap: wrap;
-        }
+    .btn-back {
+        background: #f8f9fa;
+        color: #666;
+        border: 1px solid #ccc;
+    }
+    .btn-back:hover {
+        color: #1e4d2b;
+        border-color: #1e4d2b;
+    }
 
-        .action-group-right {
-            display: flex;
-            gap: 10px;
-            align-items: center;
-        }
+    .btn-pay {
+        background: #d1e7dd;
+        color: #1e4d2b;
+        border: 1px solid #4c9b77;
+    }
+    .btn-pay:hover {
+        background: #4c9b77;
+        color: white;
+    }
 
-        /* Base Button Style */
-        .btn {
-            text-decoration: none;
-            padding: 10px 18px;
-            border-radius: 4px;
-            font-size: 12px;
-            font-weight: 800;
-            letter-spacing: 0.5px;
-            display: inline-block;
-            text-align: center;
-            text-transform: uppercase;
-            transition: all 0.2s;
-            cursor: pointer;
-            outline: none;
-        }
+    .btn-invoice {
+        background: #fff;
+        color: #1e4d2b;
+        border: 1px solid #ccc;
+    }
+    .btn-invoice:hover {
+        background: #f2f2f2;
+        border-color: #1e4d2b;
+    }
 
-        .btn-back {
-            background: #f8f9fa;
-            color: #666;
-            border: 1px solid #ccc;
-        }
-        .btn-back:hover {
-            color: #1e4d2b;
-            border-color: #1e4d2b;
-        }
+    .btn-cancel {
+        background: #fff;
+        color: #e53e3e;
+        border: 1px solid #e53e3e;
+    }
+    .btn-cancel:hover {
+        background: #e53e3e;
+        color: white;
+    }
 
-        .btn-pay {
-            background: #d1e7dd;
-            color: #1e4d2b;
-            border: 1px solid #4c9b77;
-        }
-        .btn-pay:hover {
-            background: #4c9b77;
-            color: white;
-        }
+    @media (max-width: 650px) {
+        .detail-grid { grid-template-columns: 1fr; gap: 30px; }
+        .header-section { flex-direction: column; align-items: flex-start; gap: 15px; }
+        .header-status-block { align-items: flex-start; text-align: left; }
+        .action-section { flex-direction: column; align-items: stretch; }
+        .action-group-right { flex-direction: column; align-items: stretch; }
+    }
+</style>
 
-        .btn-invoice {
-            background: #fff;
-            color: #1e4d2b;
-            border: 1px solid #ccc;
-        }
-        .btn-invoice:hover {
-            background: #f2f2f2;
-            border-color: #1e4d2b;
-        }
-
-        .btn-cancel {
-            background: #fff;
-            color: #e53e3e;
-            border: 1px solid #e53e3e;
-        }
-        .btn-cancel:hover {
-            background: #e53e3e;
-            color: white;
-        }
-
-        @media (max-width: 650px) {
-            .detail-grid { grid-template-columns: 1fr; gap: 30px; }
-            .header-section { flex-direction: column; align-items: flex-start; gap: 15px; }
-            .header-status-block { align-items: flex-start; text-align: left; }
-            .action-section { flex-direction: column; align-items: stretch; }
-            .action-group-right { flex-direction: column; align-items: stretch; }
-        }
-    </style>
-</head>
-<body>
-
-<div class="container">
+<div class="container" style="max-width: 850px; margin: 0 auto; background: #fff; padding: 35px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border: 1px solid #ddd;">
     
     <div class="header-section">
         <h1>Detail Pesanan</h1>
@@ -238,7 +214,6 @@
     </div>
 
     <div class="detail-grid">
-        
         <div>
             <h3>Informasi Pembeli</h3>
             <div class="info-group">
@@ -312,6 +287,4 @@
     
 </div>
 
-</body>
-</html>
 @endsection

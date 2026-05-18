@@ -1,23 +1,8 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Daftar Pembayaran - Istana Qurban</title>
+@extends('layout.app')
+@section('title', 'Daftar Pembayaran - Istana Qurban')
+@section('content')
 
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
-        body {
-            background: #f5f6fa;
-            color: #222;
-            padding: 40px 20px;
-        }
 
         .container {
             max-width: 1000px;
@@ -173,8 +158,6 @@
             color: #1e4d2b;
         }
     </style>
-</head>
-<body>
 
 <div class="container">
     <h1>Daftar Pembayaran</h1>
@@ -233,8 +216,6 @@
     </div>
     @endforeach
 
-    <a href="{{ route('dashboard') }}" class="btn-back">← KEMBALI KE DASHBOARD</a>
 </div>
 
-</body>
-</html>
+@endsection

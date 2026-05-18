@@ -1,12 +1,6 @@
 @extends('layout.app')
-@section('title', 'Katalog Sapi - Istana Qurban')
+@section('title', 'Daftar Pesanan - Istana Qurban')
 @section('content')
-<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Daftar Pesanan - Istana Qurban</title>
 
     <style>
 
@@ -121,8 +115,6 @@
             color: #1e4d2b;
         }
     </style>
-</head>
-<body>
 
 <div class="container">
     <h1>Daftar Pesanan</h1>
@@ -179,6 +171,4 @@
 
 </div>
 
-</body>
-</html>
 @endsection
