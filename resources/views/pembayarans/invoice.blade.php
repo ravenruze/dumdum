@@ -3,11 +3,25 @@
 @section('content')
 
     <style>
+        /* --- OPTIMALISASI SERVER CETAK PDF --- */
+        @page {
+            size: A4;
+            margin: 0; /* Menghilangkan margin bawaan browser/server cetak */
+        }
 
         body {
             background: #fff;
             color: #222;
+            padding: 0;
+            margin: 0;
+            font-family: system-ui, -apple-system, sans-serif;
+        }
+
+        /* Pembungkus halaman agar margin tetap konsisten saat cetak di lokal maupun server */
+        .invoice-wrapper {
             padding: 40px;
+            box-sizing: border-box;
+            background: #fff;
         }
 
         /* --- HEADER NOTA --- */
@@ -138,6 +152,7 @@
         }
     </style>
 
+<div class="invoice-wrapper">
     <div class="header">
         <h1>ISTANA QURBAN</h1>
         <p>INVOICE PEMBAYARAN</p>
@@ -183,7 +198,7 @@
                 <td>{{ $pembayaran->tanggal_transaksi }}</td>
                 <td>{{ $pembayaran->tipe }}</td>
                 <td style="font-weight: 600;">Rp{{ number_format($pembayaran->jumlah_bayar, 0, ',', '.') }}</td>
-                <td style="color: #e53e3e;">Rp{{ number_format($sisaBayar, 0, ',', '.') }}</td>
+                <td style="color: #e53e3e;">Rp{{ number_format($pembayaran->sisa_bayar, 0, ',', '.') }}</td>
             </tr>
             @endforeach
             
@@ -210,5 +225,6 @@
         <p>Dokumen ini dicetak otomatis oleh Sistem Manajemen Istana Qurban</p>
         <p>Terima kasih atas kerja sama dan kepercayaan Anda.</p>
     </div>
+</div>
 
 @endsection

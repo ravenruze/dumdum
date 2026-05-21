@@ -35,9 +35,9 @@ Route::get('/pesanan', [PesananController::class, 'index'])->name('pesanan.index
 Route::get('/pesanan/{pesanan}', [PesananController::class, 'show'])->name('pesanan.show')->middleware(\App\Http\Middleware\RoleMiddleware::class . ':SuperAdmin,Admin');
 Route::delete('/pesanan/{pesanan}', [PesananController::class, 'destroy'])->name('pesanan.destroy')->middleware(\App\Http\Middleware\RoleMiddleware::class . ':SuperAdmin,Admin');
 
-Route::get('/pesanan/{pesanan}/pembayaran', [PembayaranController::class, 'create'])->name('pembayaran.create');
-Route::post('/pesanan/{pesanan}/pembayaran', [PembayaranController::class, 'store'])->name('pembayaran.store');
-Route::get('/pembayaran', [PembayaranController::class, 'index'])->name('pembayaran.index');
-Route::get('/pesanan/{pesanan}/invoice', [PembayaranController::class, 'invoice'])->name('pembayaran.invoice');
+Route::get('/pesanan/{pesanan}/pembayaran', [PembayaranController::class, 'create'])->name('pembayaran.create')->middleware(\App\Http\Middleware\RoleMiddleware::class . ':SuperAdmin');
+Route::post('/pesanan/{pesanan}/pembayaran', [PembayaranController::class, 'store'])->name('pembayaran.store')->middleware(\App\Http\Middleware\RoleMiddleware::class . ':SuperAdmin');
+Route::get('/pembayaran', [PembayaranController::class, 'index'])->name('pembayaran.index')->middleware(\App\Http\Middleware\RoleMiddleware::class . ':SuperAdmin');
+Route::get('/pesanan/{pesanan}/invoice', [PembayaranController::class, 'invoice'])->name('pembayaran.invoice')->middleware(\App\Http\Middleware\RoleMiddleware::class . ':SuperAdmin');
 
-Route::get('/laporan', [LaporanController::class, 'index'])->name('laporan.index');
+Route::get('/laporan', [LaporanController::class, 'index'])->name('laporan.index')->middleware(\App\Http\Middleware\RoleMiddleware::class . ':SuperAdmin');

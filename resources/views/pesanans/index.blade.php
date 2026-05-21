@@ -33,9 +33,10 @@
         .table-container {
             background: #fff;
             border-radius: 8px;
-            overflow: hidden;
+            overflow-x: auto; /* PERUBAHAN: Mengaktifkan scroll horizontal jika layar sempit */
             box-shadow: 0 4px 12px rgba(0,0,0,0.05);
             border: 1px solid #ddd;
+            -webkit-overflow-scrolling: touch; /* Mengaluskan scroll di perangkat iOS */
         }
 
         table {
@@ -43,6 +44,7 @@
             border-collapse: collapse;
             font-size: 14px;
             background-color: #fff;
+            min-width: 600px; /* PERUBAHAN: Menjaga struktur kolom agar tidak terlalu berhimpitan di HP */
         }
 
         thead {
@@ -77,6 +79,7 @@
             font-weight: bold;
             text-transform: uppercase;
             display: inline-block;
+            white-space: nowrap; /* TAMBAHAN: Biar teks status tidak pecah jadi 2 baris di mobile */
         }
 
         .status-booking { background: #e53e3e; color: white; }
@@ -94,6 +97,7 @@
             font-weight: bold;
             border: 1px solid #ccc;
             display: inline-block;
+            white-space: nowrap; /* TAMBAHAN: Biar tombol aksi tetap sejajar rapi */
         }
 
         .btn-detail:hover {
@@ -113,6 +117,25 @@
 
         .btn-back:hover {
             color: #1e4d2b;
+        }
+
+        /* --- RESPONSIVE CSS QUERY UNTUK MOBILE VIA MEDIA --- */
+        @media (max-width: 768px) {
+            .container {
+                width: 100%;
+                padding: 0 10px;
+                box-sizing: border-box;
+            }
+
+            h1 {
+                font-size: 22px; /* Mengecilkan ukuran judul agar muat di screen kecil */
+                margin-bottom: 15px;
+            }
+
+            th, td {
+                padding: 12px 10px; /* Sedikit mempersempit padding biar hemat ruang */
+                font-size: 13px;
+            }
         }
     </style>
 

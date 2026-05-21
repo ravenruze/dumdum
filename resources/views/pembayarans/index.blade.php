@@ -4,9 +4,10 @@
 
     <style>
 
+        /* --- SAMA DENGAN KODE SEBELUMNYA --- */
         .container {
-            max-width: 1000px;
-            margin: 0 auto;
+            width: 95%;
+            margin: 20px auto;
         }
 
         h1 {
@@ -77,6 +78,7 @@
             text-transform: uppercase;
             letter-spacing: 0.5px;
             display: inline-block;
+            white-space: nowrap;
         }
 
         .status-lunas { background: #4bd18e; color: white; }
@@ -85,9 +87,10 @@
         /* --- TABLE STYLING --- */
         .table-container {
             border-radius: 6px;
-            overflow: hidden;
+            overflow-x: auto; /* MENJADI RESPONSIF: Mengizinkan scroll horizontal di HP */
             border: 1px solid #eee;
             margin-top: 10px;
+            -webkit-overflow-scrolling: touch;
         }
 
         table {
@@ -95,6 +98,7 @@
             border-collapse: collapse;
             font-size: 13px;
             background-color: #fff;
+            min-width: 600px; /* MENJADI RESPONSIF: Mencegah tabel gepeng/hancur di layar kecil */
         }
 
         thead {
@@ -136,6 +140,7 @@
             border: 1px solid #ccc;
             display: inline-block;
             transition: all 0.2s;
+            white-space: nowrap;
         }
 
         .btn-bukti:hover {
@@ -156,6 +161,42 @@
 
         .btn-back:hover {
             color: #1e4d2b;
+        }
+
+        /* --- RESPONSIVE CSS QUERY UNTUK MOBILE --- */
+        @media (max-width: 768px) {
+            .container {
+                width: 100%;
+                padding: 0 10px;
+                box-sizing: border-box;
+            }
+
+            h1 {
+                font-size: 22px;
+                margin-bottom: 15px;
+            }
+
+            .pembayaran-card {
+                padding: 15px;
+                margin-bottom: 20px;
+            }
+
+            .card-header-info {
+                flex-direction: column; /* Menyusun nama pembeli dan info harga ke bawah di HP */
+                align-items: flex-start;
+                gap: 10px;
+            }
+
+            .header-meta {
+                flex-wrap: wrap;
+                gap: 10px;
+                width: 100%;
+                justify-content: space-between; /* Membuat badge status dan harga pas di kanan-kiri mobile */
+            }
+
+            th, td {
+                padding: 10px 12px;
+            }
         }
     </style>
 
