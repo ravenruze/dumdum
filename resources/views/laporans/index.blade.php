@@ -206,6 +206,53 @@
         transition: color 0.2s;
     }
     .btn-back-dashboard:hover { color: #1e4d2b; }
+
+    @media (max-width: 768px) {
+        .laporan-container {
+            padding: 5px;
+        }
+
+        h1 { font-size: 20px; }
+        h3 { font-size: 14px; }
+
+        .filter-form {
+            flex-direction: column !important;
+            align-items: stretch !important;
+            gap: 12px !important;
+        }
+
+        .filter-group {
+            justify-content: space-between !important;
+        }
+
+        .filter-input {
+            width: 70% !important; /
+        }
+
+        .btn-filter, .btn-all {
+            text-align: center !important;
+            width: 100% !important;
+            padding: 11px !important;
+        }
+
+        .chart-card div {
+            max-width: 100% !important;
+        }
+
+        .table-container {
+            width: 100% !important;
+            overflow-x: auto !important;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        table {
+            min-width: 600px; /* Paksa lebar tabel agar kolom tidak menumpuk gepeng */
+        }
+        
+        th, td {
+            padding: 10px 12px !important;
+        }
+    }
 </style>
 
 <div class="laporan-container">
@@ -378,10 +425,8 @@
         </table>
     </div>
 
-    <a href="{{ route('dashboard') }}" class="btn-back-dashboard">← Kembali ke Dashboard Utama</a>
 </div>
 
-{{-- SCRIPT INITIALIZATION CHART.JS --}}
 <script>
     // 1. Render Pie Chart Komposisi Stok
     new Chart(document.getElementById('pieChart'), {
