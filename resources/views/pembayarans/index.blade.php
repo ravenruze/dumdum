@@ -201,7 +201,7 @@
     </style>
 
 <div class="container">
-    <h1>Daftar Pembayaran</h1>
+    <h1 class="garis-bawah-judul">Daftar Pembayaran</h1>
 
     @if(session()->has('success'))
         <div class="alert-success">

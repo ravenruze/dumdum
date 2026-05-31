@@ -144,6 +144,18 @@
         border-radius: 2px;
     }
 
+    .garis-bawah-judul {
+    font-size: 24px;
+    color: #1e4d2b;
+    font-weight: 800;
+    text-transform: uppercase;
+    margin-top: 0;
+    letter-spacing: 0.5px;
+    margin-bottom: 25px;
+    border-bottom: 2px solid #1e4d2b; /* Garis hijau tua tebal 2px */
+    padding-bottom: 10px;            /* Jarak teks ke garis */
+}
+
     /* --- RESPONSIVE MODE (MOBILE) --- */
     @media (max-width: 768px) {
         .menu-toggle {

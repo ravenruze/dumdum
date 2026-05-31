@@ -10,6 +10,7 @@
         padding: 30px;
         border-radius: 8px;
         border: 1px solid #ddd;
+        font-family: system-ui, -apple-system, sans-serif !important;
     }
 
     .modal-title {

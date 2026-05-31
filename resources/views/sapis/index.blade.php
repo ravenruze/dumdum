@@ -109,7 +109,7 @@
 
 <div class="container">
 
-    <h1>Katalog Sapi</h1>
+    <h1 class="garis-bawah-judul">KATALOG SAPI</h1>
 
     <div class="top-bar">
         <a href="{{ route('sapi.create') }}" class="btn-add">+ TAMBAH SAPI</a>

@@ -6,7 +6,7 @@
         /* --- OPTIMALISASI SERVER CETAK PDF --- */
         @page {
             size: A4;
-            margin: 0; /* Menghilangkan margin bawaan browser/server cetak */
+            margin: 0;
         }
 
         body {
@@ -17,7 +17,6 @@
             font-family: system-ui, -apple-system, sans-serif;
         }
 
-        /* Pembungkus halaman agar margin tetap konsisten saat cetak di lokal maupun server */
         .invoice-wrapper {
             padding: 40px;
             box-sizing: border-box;
