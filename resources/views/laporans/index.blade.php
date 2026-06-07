@@ -62,33 +62,45 @@
     .filter-input:focus { border-color: #4c9b77; }
 
     .btn-filter {
-        background: #4c9b77;
-        color: white;
-        border: none;
-        padding: 9px 18px;
-        font-weight: bold;
-        font-size: 13px;
+        text-decoration: none;
+        background: #f8f9fa;
+        color: #1e4d2b;
+        padding: 9px 14px;
         border-radius: 4px;
-        cursor: pointer;
-        text-transform: uppercase;
-        transition: background 0.2s;
+        font-size: 13px;
+        font-weight: 800;
+        border: 1px solid #ccc;
+        display: inline-block;
+        transition: all 0.2s;
+        white-space: nowrap; 
     }
 
-    .btn-filter:hover { background: #1e4d2b; }
+    .btn-filter:hover 
+    {  background: #4c9b77;
+            color: white;
+            border-color: #4c9b77;
+    }
 
     .btn-all {
-        font-size: 13px;
-        color: #666;
         text-decoration: none;
-        font-weight: 600;
-        padding: 8px 12px;
-        border: 1px solid #ddd;
+        background: #f8f9fa;
+        color: #1e4d2b;
+        padding: 9px 18px;
         border-radius: 4px;
-        background: #fafafa;
+        font-size: 13px;
+        font-weight: 800;
+        border: 1px solid #ccc;
+        display: inline-block;
         transition: all 0.2s;
+        white-space: nowrap; 
     }
 
-    .btn-all:hover { background: #eee; color: #222; }
+    .btn-all:hover 
+    { 
+        background: #4c9b77;
+        color: white;
+        border-color: #4c9b77; 
+    }
 
     /* --- KPI CARDS --- */
     .kpi-container {

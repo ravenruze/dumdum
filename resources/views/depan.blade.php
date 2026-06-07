@@ -150,7 +150,7 @@
         flex-shrink: 0;
     }
 
-    .menu-text h3 { font-size: 0.95rem; font-weight: 600; color: #1e4d2b; margin-bottom: 3px; }
+    .menu-text h3 { font-size: 0.95rem; font-weight: 800; color: #1e4d2b; margin-bottom: 3px; }
     .menu-text p  { font-size: 0.82rem; color: #95a5a6; }
 
     @media (max-width: 700px) {
@@ -204,7 +204,7 @@
 
     <div class="menu-grid">
         <a href="{{ route('sapi.index') }}" class="menu-card">
-            <div class="menu-icon"><i class="ti ti-cow"></i></div>
+            <div class="menu-icon"><i class="ti ti-layout-grid"></i></div>
             <div class="menu-text">
                 <h3>Katalog Sapi</h3>
                 <p>Lihat dan kelola data sapi qurban</p>

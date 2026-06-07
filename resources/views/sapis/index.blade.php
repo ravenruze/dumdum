@@ -4,8 +4,6 @@
 
     <style>
 
-        /* --- LAYOUT --- */
-
         .grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
@@ -78,6 +76,40 @@
         }
 
         /* --- ACTIONS (Tombol) --- */
+
+        .top-bar {
+            display: flex;
+            justify-content: space-between; 
+            align-items: center; 
+            margin-bottom: 25px;
+            gap: 15px;
+            flex-wrap: wrap; 
+        }
+
+        .filter-buttons {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        /* Styling tombol tambah sapi supaya pas disandingkan dengan filter */
+        .btn-add {
+            text-decoration: none;
+            background: #1e4d2b;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 4px;
+            font-size: 13px;
+            font-weight: 900;
+            display: inline-block;
+            white-space: nowrap;
+            transition: background 0.2s;
+        }
+
+        .btn-add:hover {
+            background: #4c9b77;
+        }
+
         .actions {
             display: flex;
             gap: 5px;
@@ -85,21 +117,23 @@
         }
 
         .btn-minimal {
-            background: #e0e0e0;
-            border: 1px solid #ccc;
-            color: #333;
-            padding: 6px 12px;
-            font-size: 11px;
-            font-weight: bold;
             text-decoration: none;
-            text-transform: uppercase;
-            cursor: pointer;
-            text-align: center;
-            min-width: 60px; 
+            background: #f8f9fa;
+            color: #1e4d2b;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: 800;
+            border: 1px solid #ccc;
+            display: inline-block;
+            transition: all 0.2s;
+            white-space: nowrap; 
         }
 
         .btn-minimal:hover {
-            background: #d5d5d5;
+             background: #4c9b77;
+            color: white;
+            border-color: #4c9b77;
         }
 
         form {
@@ -147,10 +181,7 @@
     <h1 class="garis-bawah-judul">KATALOG SAPI</h1>
 
     <div class="top-bar">
-        <a href="{{ route('sapi.create') }}" class="btn-add">+ TAMBAH SAPI</a>
-    </div>
-
-    <div style="display: flex; gap: 8px; margin-bottom: 20px;">
+        <div style="display: flex; gap: 8px; margin-bottom: 20px;">
         <a href="{{ route('sapi.index') }}" 
         class="btn-minimal {{ !request('filter') ? 'active-filter' : '' }}">SEMUA</a>
         <a href="{{ route('sapi.index', ['filter' => 'Tersedia']) }}" 
@@ -159,6 +190,9 @@
         class="btn-minimal {{ request('filter') == 'Booking' ? 'active-filter' : '' }}">BOOKING</a>
         <a href="{{ route('sapi.index', ['filter' => 'Terjual']) }}" 
         class="btn-minimal {{ request('filter') == 'Terjual' ? 'active-filter' : '' }}">SOLD</a>
+    </div>
+
+        <a href="{{ route('sapi.create') }}" class="btn-add">+ TAMBAH SAPI</a>
     </div>
 
     <div class="grid">
