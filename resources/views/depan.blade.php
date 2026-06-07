@@ -157,10 +157,6 @@
         .stats, .menu-grid { grid-template-columns: 1fr; }
     }
 
-        .container {
-        max-width: 1200px !important;
-        padding: 0 40px !important;
-    }
 </style>
 
 <div class="dash-wrapper">

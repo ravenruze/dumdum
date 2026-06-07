@@ -4,12 +4,6 @@
 
     <style>
 
-        /* --- SAMA DENGAN KODE SEBELUMNYA --- */
-        .container {
-            width: 95%;
-            margin: 20px auto;
-        }
-
         h1 {
             color: #1e4d2b;
             font-size: 28px;
