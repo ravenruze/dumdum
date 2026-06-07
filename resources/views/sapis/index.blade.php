@@ -117,7 +117,30 @@
             width: 100%;
             padding: 0 20px;
         }
-    </style>
+
+        nav[aria-label="Pagination Navigation"] svg {
+            width: 14px;
+            height: 14px;
+        }
+
+        nav[aria-label="Pagination Navigation"] a,
+        nav[aria-label="Pagination Navigation"] span {
+            padding: 6px 10px;
+            font-size: 12px;
+            border: 1px solid #ccc;
+            background: #e0e0e0;
+            color: #333;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        nav[aria-label="Pagination Navigation"] span[aria-current="page"] {
+            background: #1e4d2b;
+            color: white;
+            border-color: #1e4d2b;
+        }
+            </style>
 
 <div class="container">
 
@@ -193,6 +216,9 @@
         @endforeach
     </div>
 
+    <div style="margin-top: 20px; display: flex; justify-content: center;">
+        {{ $sapis->appends(request()->query())->links() }}
+    </div>
 
 </div>
 

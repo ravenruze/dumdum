@@ -19,7 +19,7 @@ class SapiController extends Controller
                 WHEN 'Booking' THEN 2 
                 WHEN 'Terjual' THEN 3 
                 END")
-            ->get();
+            ->simplePaginate(8);
 
         return view('sapis.index', compact('sapis'));
 }
