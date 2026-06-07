@@ -8,11 +8,21 @@ use Illuminate\Support\Facades\Storage;
 
 class SapiController extends Controller
 {
-    public function index(){
-        $sapis = Sapi::all();
-        return view('sapis.index', ['sapis' => $sapis]);
-        
-    }
+    public function index(Request $request)
+{
+        $sapis = Sapi::query()
+            ->when($request->filter, function($q) use ($request) {
+                $q->where('status', $request->filter);
+            })
+            ->orderByRaw("CASE status 
+                WHEN 'Tersedia' THEN 1 
+                WHEN 'Booking' THEN 2 
+                WHEN 'Terjual' THEN 3 
+                END")
+            ->get();
+
+        return view('sapis.index', compact('sapis'));
+}
 
     public function create(){
         return view('sapis.create');

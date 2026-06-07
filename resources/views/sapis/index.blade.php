@@ -105,6 +105,18 @@
         form {
             display: inline;
         }
+        
+        .active-filter {
+            background: #1e4d2b;
+            color: white;
+            border-color: #1e4d2b;
+        }
+
+        .container {
+            max-width: 100%;
+            width: 100%;
+            padding: 0 20px;
+        }
     </style>
 
 <div class="container">
@@ -113,6 +125,17 @@
 
     <div class="top-bar">
         <a href="{{ route('sapi.create') }}" class="btn-add">+ TAMBAH SAPI</a>
+    </div>
+
+    <div style="display: flex; gap: 8px; margin-bottom: 20px;">
+        <a href="{{ route('sapi.index') }}" 
+        class="btn-minimal {{ !request('filter') ? 'active-filter' : '' }}">SEMUA</a>
+        <a href="{{ route('sapi.index', ['filter' => 'Tersedia']) }}" 
+        class="btn-minimal {{ request('filter') == 'Tersedia' ? 'active-filter' : '' }}">AVAILABLE</a>
+        <a href="{{ route('sapi.index', ['filter' => 'Booking']) }}" 
+        class="btn-minimal {{ request('filter') == 'Booking' ? 'active-filter' : '' }}">BOOKING</a>
+        <a href="{{ route('sapi.index', ['filter' => 'Terjual']) }}" 
+        class="btn-minimal {{ request('filter') == 'Terjual' ? 'active-filter' : '' }}">SOLD</a>
     </div>
 
     <div class="grid">
