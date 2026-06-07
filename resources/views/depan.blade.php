@@ -2,235 +2,235 @@
 @section('title', 'Dashboard - Istana Qurban')
 @section('content')
 
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css">
+
 <style>
-    :root {
-        --primary: #1e4d2b;
-        --primary-light: #2f6b43;
-        --secondary: #4c9b77;
-        --bg: #f4f7f6;
-        --white: #ffffff;
-        --text: #2d3436;
-        --muted: #7f8c8d;
-        --shadow: 0 12px 25px rgba(0,0,0,0.05);
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
-    h1 {
-        margin-bottom: 15px;
-        font-size: 28px;
-        font-weight: 800;    
-        color: #ffffff;      
-    }
-
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-    }
-
-    .wrapper {
-        max-width: 980px;
-        margin: 0 auto;
+    .dash-wrapper {
+        padding: 32px 20px;
     }
 
     header {
-        background: linear-gradient(135deg, var(--primary), var(--primary-light));
+        background: #1e4d2b;
         color: white;
-        padding: 40px 30px;
-        border-radius: 2px;
-        text-align: center;
-        margin-bottom: 35px;
-        box-shadow: var(--shadow);
+        padding: 32px 36px;
+        border-radius: 4px;
+        margin-bottom: 28px;
+        display: flex;
+        align-items: center;
+        gap: 20px;
+    }
+
+    .header-icon {
+        width: 52px;
+        height: 52px;
+        background: rgba(255,255,255,0.15);
+        border-radius: 4px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
     }
 
     header h1 {
-        font-size: 2.3rem;
-        font-weight: 800;
-        margin-bottom: 8px;
-        letter-spacing: -0.5px;
+        font-size: 1.6rem;
+        font-weight: 700;
+        letter-spacing: -0.3px;
+        margin-bottom: 4px;
+        color: white;
     }
 
-    header .subtitle {
-        font-size: 1rem;
-        opacity: 0.92;
+    header p {
+        font-size: 0.88rem;
+        opacity: 0.75;
+        color: white;
     }
 
-    .stats-container {
+    .stats {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
-        gap: 20px;
-        margin-bottom: 35px;
+        gap: 16px;
+        margin-bottom: 24px;
     }
 
-    .stat-card {
-        background: var(--white);
-        border-radius: 2px;
-        padding: 24px;
-        box-shadow: var(--shadow);
-        text-align: center;
+    .stat {
+        background: white;
+        border-radius: 4px;
+        padding: 20px 24px;
+        border: 0.5px solid #e0e0e0;
         position: relative;
         overflow: hidden;
     }
 
-    .stat-card::before {
+    .stat::before {
         content: "";
         position: absolute;
-        top: 0;
-        left: 0;
-        height: 5px;
-        width: 100%;
+        top: 0; left: 0;
+        width: 100%; height: 3px;
     }
 
-    .stat-card.available::before { background: #2ecc71; }
-    .stat-card.booked::before { background: #f1c40f; }
-    .stat-card.sold::before { background: #e74c3c; }
+    .stat-top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 10px;
+    }
 
-    .stat-label {
-        font-size: 0.82rem;
+    .stat-lbl {
+        font-size: 11px;
         text-transform: uppercase;
-        letter-spacing: 1px;
+        letter-spacing: 1.2px;
         color: #95a5a6;
         font-weight: 700;
     }
 
+    .stat-icon {
+        width: 30px; height: 30px;
+        border-radius: 4px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 14px;
+    }
+
     .stat-value {
-        font-size: 2.4rem;
+        font-size: 2rem;
         font-weight: 800;
-        margin: 12px 0 8px;
+        line-height: 1;
+        margin-bottom: 5px;
+        color: #2d3436;
     }
 
-    .available .stat-value { color: #27ae60; }
-    .booked .stat-value { color: #f39c12; }
-    .sold .stat-value { color: #c0392b; }
+    .stat-sub { font-size: 12px; color: #b2bec3; }
 
-    .stat-total {
-        font-size: 0.85rem;
-        color: var(--muted);
-    }
+    .available::before { background: #27ae60; }
+    .booked::before    { background: #f39c12; }
+    .sold::before      { background: #e74c3c; }
+
+    .available .stat-icon { background: #f0faf4; color: #27ae60; }
+    .booked .stat-icon    { background: #fdf8ee; color: #f39c12; }
+    .sold .stat-icon      { background: #fdf1f1; color: #e74c3c; }
 
     .menu-grid {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
-        gap: 20px;
+        gap: 16px;
     }
 
     .menu-card {
-        background: var(--white);
-        border-radius: 2px;
-        padding: 28px 22px;
-        text-decoration: none;
-        color: var(--text);
-        box-shadow: var(--shadow);
-        transition: 0.25s ease;
+        background: white;
+        border-radius: 4px;
+        padding: 22px 20px;
         display: flex;
         align-items: center;
-        gap: 18px;
-        border: 1px solid transparent;
+        gap: 16px;
+        border: 0.5px solid #e0e0e0;
+        cursor: pointer;
+        transition: all 0.2s;
+        text-decoration: none;
+        color: inherit;
     }
 
     .menu-card:hover {
-        transform: translateY(-5px);
-        border-color: #dcefe4;
-        box-shadow: 0 18px 35px rgba(0,0,0,0.08);
+        border-color: #1e4d2b;
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(30,77,43,0.08);
     }
 
-    .icon-box {
-        min-width: 58px;
-        height: 58px;
-        border-radius: 2px;
-        background: #e9f7ef;
+    .menu-icon {
+        width: 48px; height: 48px;
+        background: #eaf7ef;
+        border-radius: 4px;
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: 1.5rem;
+        color: #1e4d2b;
+        font-size: 20px;
+        flex-shrink: 0;
     }
 
-    .menu-text h3 {
-        color: var(--primary);
-        font-size: 1.05rem;
-        margin-bottom: 4px;
-    }
-
-    .menu-text p {
-        font-size: 0.88rem;
-        color: var(--muted);
-    }
+    .menu-text h3 { font-size: 0.95rem; font-weight: 600; color: #1e4d2b; margin-bottom: 3px; }
+    .menu-text p  { font-size: 0.82rem; color: #95a5a6; }
 
     @media (max-width: 700px) {
-        .stats-container,
-        .menu-grid {
-            grid-template-columns: 1fr;
-        }
+        .stats, .menu-grid { grid-template-columns: 1fr; }
+    }
 
-        .menu-card {
-            align-items: flex-start;
-        }
+        .container {
+        max-width: 1200px !important;
+        padding: 0 40px !important;
     }
 </style>
 
-<div class="wrapper">
+<div class="dash-wrapper">
+
     <header>
-        <h1>Istana Qurban</h1>
-        <p class="subtitle">Sistem Pencatatan & Manajemen Penjualan Sapi</p>
+        <div class="header-icon">
+            <i class="ti ti-building-store" style="color:white;font-size:24px"></i>
+        </div>
+        <div>
+            <h1>Istana Qurban</h1>
+            <p>Sistem Pencatatan & Manajemen Penjualan Sapi</p>
+        </div>
     </header>
 
-    <div class="stats-container">
-        <div class="stat-card available">
-            <div class="stat-label">Tersedia</div>
+    <div class="stats">
+        <div class="stat available">
+            <div class="stat-top">
+                <div class="stat-lbl">Tersedia</div>
+                <div class="stat-icon"><i class="ti ti-circle-check"></i></div>
+            </div>
             <div class="stat-value">{{ $totalTersedia }}</div>
-            <div class="stat-total">
-                dari {{ $totalTersedia + $totalTerjual + $totalDipesan }} ekor
-            </div>
+            <div class="stat-sub">dari {{ $totalTersedia + $totalTerjual + $totalDipesan }} ekor</div>
         </div>
-
-        <div class="stat-card booked">
-            <div class="stat-label">Dipesan</div>
+        <div class="stat booked">
+            <div class="stat-top">
+                <div class="stat-lbl">Dipesan</div>
+                <div class="stat-icon"><i class="ti ti-clock"></i></div>
+            </div>
             <div class="stat-value">{{ $totalDipesan }}</div>
-            <div class="stat-total">
-                dari {{ $totalTersedia + $totalTerjual + $totalDipesan }} ekor
-            </div>
+            <div class="stat-sub">dari {{ $totalTersedia + $totalTerjual + $totalDipesan }} ekor</div>
         </div>
-
-        <div class="stat-card sold">
-            <div class="stat-label">Terjual</div>
-            <div class="stat-value">{{ $totalTerjual }}</div>
-            <div class="stat-total">
-                dari {{ $totalTersedia + $totalTerjual + $totalDipesan }} ekor
+        <div class="stat sold">
+            <div class="stat-top">
+                <div class="stat-lbl">Terjual</div>
+                <div class="stat-icon"><i class="ti ti-tag"></i></div>
             </div>
+            <div class="stat-value">{{ $totalTerjual }}</div>
+            <div class="stat-sub">dari {{ $totalTersedia + $totalTerjual + $totalDipesan }} ekor</div>
         </div>
     </div>
 
     <div class="menu-grid">
         <a href="{{ route('sapi.index') }}" class="menu-card">
-            <div class="icon-box">🐄</div>
+            <div class="menu-icon"><i class="ti ti-cow"></i></div>
             <div class="menu-text">
                 <h3>Katalog Sapi</h3>
                 <p>Lihat dan kelola data sapi qurban</p>
             </div>
         </a>
-
-        <div class="menu-card" onclick="window.location.href='{{ route('pesanan.index') }}'">
-            <div class="icon-box">📝</div>
+        <a href="{{ route('pesanan.index') }}" class="menu-card">
+            <div class="menu-icon"><i class="ti ti-clipboard-list"></i></div>
             <div class="menu-text">
                 <h3>Registrasi & Booking</h3>
                 <p>Pencatatan data pemesanan sapi</p>
             </div>
-        </div>
-
-        <div class="menu-card" onclick="window.location.href='{{ route('pembayaran.index') }}'">
-            <div class="icon-box">💰</div>
+        </a>
+        <a href="{{ route('pembayaran.index') }}" class="menu-card">
+            <div class="menu-icon"><i class="ti ti-receipt"></i></div>
             <div class="menu-text">
-                <h3>Pembayaran & Keuangan</h3>
+                <h3>Transaksi</h3>
                 <p>Monitoring pembayaran pelanggan</p>
             </div>
-        </div>
-
-        <div class="menu-card" onclick="window.location.href='{{ route('laporan.index') }}'">
-            <div class="icon-box">📊</div>
+        </a>
+        <a href="{{ route('laporan.index') }}" class="menu-card">
+            <div class="menu-icon"><i class="ti ti-chart-bar"></i></div>
             <div class="menu-text">
-                <h3>Rekap Penjualan</h3>
+                <h3>Laporan</h3>
                 <p>Ringkasan transaksi dan laporan</p>
             </div>
-        </div>
+        </a>
     </div>
 </div>
 
