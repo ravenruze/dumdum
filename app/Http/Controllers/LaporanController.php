@@ -64,6 +64,7 @@ class LaporanController extends Controller
         $sapiTersedia = Sapi::where('status', 'Tersedia')->get();
         $sapiDipesan  = Pesanan::with(['pembeli', 'sapi'])
                         ->where('status', 'Booking')
+                        ->where('status_pembayaran', '!=', 'Lunas')
                         ->get();
 
         return view('laporans.index', compact(

@@ -294,7 +294,7 @@
             <div class="kpi-value">{{ $sapiTerjualFilter }} <span style="font-size: 14px; color: #666; font-weight: normal;">ekor</span></div>
         </div>
         <div class="kpi-card accent">
-            <div class="kpi-title">Pemasukan Omset (Filter)</div>
+            <div class="kpi-title">Pemasukan Omset</div>
             <div class="kpi-value">Rp{{ number_format($pemasukanFilter, 0, ',', '.') }}</div>
         </div>
     </div>
