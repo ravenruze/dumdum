@@ -234,6 +234,7 @@
                 <span class="badge @if($pesanan->status_pembayaran == 'Lunas') status-lunas @else status-belum-lunas @endif">
                     @if($pesanan->status_pembayaran == 'Lunas') LUNAS @else BELUM LUNAS @endif
                 </span>
+                <a href="{{ route('pembayaran.invoice', $pesanan->id) }}" class="btn-bukti">🖨 INVOICE</a>
             </div>
         </div>
 
