@@ -21,14 +21,15 @@
 
         <div class="user-profile-container">
             <div class="user-profile" onclick="toggleLogout(event)">
-                👤
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
             </div>
             
             <div class="dropdown-logout" id="logoutMenu">
                 <form action="/logout" method="POST" onsubmit="return confirm('Yakin ingin keluar dari sistem?')">
                     @csrf
-                    <button type="submit">
-                        🚪 Logout
+                    <button type="submit" class="btn-logout-item">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 6px;"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
+                        Logout
                     </button>
                 </form>
             </div>
@@ -38,8 +39,85 @@
 
 <style>
 
+    .user-section {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .user-name {
+        color: #1e4d2b !important;
+        font-weight: 800;
+        font-size: 14px;
+    }
+
+    .user-profile-container {
+        position: relative;
+    }
+
+    .user-profile {
+        width: 34px;
+        height: 34px;
+        color: #1e4d2b; 
+        background: #eaf5ee; 
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all 0.2s ease;
+    }
+
+    .user-profile:hover {
+        background: #1e4d2b;
+        color: white; 
+    }
+
+    .dropdown-logout {
+        display: none;
+        position: absolute;
+        right: 0;
+        top: 42px;
+        background: #ffffff;
+        min-width: 110px; 
+        border-radius: 6px;
+        border: 1px solid #d1e7dd;
+        box-shadow: 0 4px 12px rgba(30, 77, 43, 0.08); 
+        z-index: 100000;
+        padding: 4px 0;
+        animation: slideDown 0.15s ease-out;
+    }
+
+    .dropdown-logout.show {
+        display: block !important;
+    }
+
+    .btn-logout-item {
+        width: 100%;
+        background: none;
+        border: none;
+        padding: 8px 12px;
+        font-size: 13px;
+        font-weight: 700;
+        color: #e53e3e; 
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background 0.2s;
+        border-radius: 4px;
+    }
+
+    .btn-logout-item:hover {
+        background: #fff5f5; 
+    }
+
+    @keyframes slideDown {
+        from { opacity: 0; transform: translateY(-5px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
     @media (max-width: 768px) {
-        /* 1. Navbar Utama */
         .navbar {
             position: relative !important;
             flex-direction: row !important;
@@ -57,7 +135,6 @@
             flex: 1 !important;
         }
 
-        /* Hamburger muncul di paling kiri sebelum Logo */
         .menu-toggle {
             display: inline-block !important;
             order: -1 !important; 
@@ -66,17 +143,7 @@
         }
 
         .user-section {
-            display: flex !important;
-            align-items: center !important;
-            gap: 10px !important;
             margin-left: auto !important;
-        }
-
-        .user-name {
-            display: inline-block !important;
-            color: #1e4d2b !important;
-            font-size: 14px !important;
-            font-weight: 700 !important;
         }
 
         .nav-links {
@@ -86,16 +153,12 @@
             width: 100% !important;
             order: 3 !important; 
             margin-top: 10px !important;
-            
             padding: 15px 0 25px 0 !important; 
             gap: 20px !important; 
-            
             background: #d1e7dd !important; 
-            
             margin-left: -15px !important;
             margin-right: -15px !important;
             width: calc(100% + 30px) !important;
-            
             z-index: 99999 !important;
         }
 
@@ -123,12 +186,9 @@
             background: transparent !important;
         }
 
-        /* Posisi dropdown logout */
         .dropdown-logout {
-            position: absolute !important;
-            right: 15px !important;
-            top: 50px !important;
-            z-index: 100000 !important;
+            right: 0 !important;
+            top: 42px !important;
         }
     }
 </style>
