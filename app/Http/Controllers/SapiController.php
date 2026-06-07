@@ -20,7 +20,7 @@ class SapiController extends Controller
 
     public function store(Request $request){
         $validatedData = $request->validate([
-        'kode_sapi'  => 'required',
+        'kode_sapi'  => 'required|unique:sapis,kode_sapi',
         'jenis_sapi' => 'required',
         'bobot'      => 'required|numeric',
         'harga_jual' => 'required|numeric',
@@ -51,7 +51,7 @@ class SapiController extends Controller
 
     public function update(Sapi $sapi, Request $request){
     $validatedData = $request->validate([
-        'kode_sapi'  => 'required',
+        'kode_sapi'  => 'required|unique:sapis,kode_sapi,'.$sapi->id,
         'jenis_sapi' => 'required',
         'bobot'      => 'required|numeric',
         'harga_jual' => 'required|numeric',
