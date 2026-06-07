@@ -235,7 +235,7 @@
 
         body {
             font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            background: linear-gradient(to bottom, #eef4f1, #f7faf9);
+            background: #eff3f1;
             color: var(--text);
             padding: 0px 0px;
         }
