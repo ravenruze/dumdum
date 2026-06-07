@@ -198,10 +198,24 @@
                 padding: 10px 12px;
             }
         }
+            .active-filter {
+            background: #1e4d2b;
+            color: white;
+            border-color: #1e4d2b;
+        }
     </style>
 
 <div class="container">
     <h1 class="garis-bawah-judul">Daftar Pembayaran</h1>
+
+    <div style="display: flex; gap: 8px; margin-bottom: 20px;">
+        <a href="{{ route('pembayaran.index') }}" 
+        class="btn-bukti {{ !request('filter') ? 'active-filter' : '' }}">SEMUA</a>
+        <a href="{{ route('pembayaran.index', ['filter' => 'BelumLunas']) }}" 
+        class="btn-bukti {{ request('filter') == 'BelumLunas' ? 'active-filter' : '' }}">BELUM LUNAS</a>
+        <a href="{{ route('pembayaran.index', ['filter' => 'Lunas']) }}" 
+        class="btn-bukti {{ request('filter') == 'Lunas' ? 'active-filter' : '' }}">LUNAS</a>
+    </div>
 
     @if(session()->has('success'))
         <div class="alert-success">

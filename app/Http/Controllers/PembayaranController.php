@@ -71,11 +71,18 @@ class PembayaranController extends Controller
             ->with('success', 'Pembayaran berhasil dicatat.');
     }
 
-    public function index()
+    public function index(Request $request)
     {
         $pesanans = Pesanan::with(['pembeli', 'sapi', 'pembayarans'])
                     ->whereHas('pembayarans')
+                    ->when($request->filter == 'Lunas', function($q) {
+                        $q->where('status_pembayaran', 'Lunas');
+                    })
+                    ->when($request->filter == 'BelumLunas', function($q) {
+                        $q->where('status_pembayaran', '!=', 'Lunas');
+                    })
                     ->get();
+
         return view('pembayarans.index', compact('pesanans'));
     }
 
