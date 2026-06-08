@@ -148,7 +148,7 @@
             <thead>
                 <tr>
                     <th>Nama Pembeli</th>
-                    <th>No HP</th>
+                    <th>Tanggal Pesanan</th>
                     <th>Kode Sapi</th>
                     <th>Harga Jual</th>
                     <th>Status Pembayaran</th>
@@ -159,8 +159,7 @@
                 @foreach($pesanans as $pesanan)
                 <tr>
                     <td style="font-weight: bold;">{{ $pesanan->pembeli->nama }}</td>
-                    <td>{{ $pesanan->pembeli->no_hp }}</td>
-                    <td><code style="background: #eee; padding: 2px 5px; border-radius: 3px;">#{{ $pesanan->sapi->kode_sapi }}</code></td>
+                    <td>{{ \Carbon\Carbon::parse($pesanan->created_at)->format('d M Y') }}</td>                    <td><code style="background: #eee; padding: 2px 5px; border-radius: 3px;">#{{ $pesanan->sapi->kode_sapi }}</code></td>
                     <td style="font-weight: bold;">Rp{{ number_format($pesanan->sapi->harga_jual, 0, ',', '.') }}</td>
                     <td>
                         <span class="badge 
